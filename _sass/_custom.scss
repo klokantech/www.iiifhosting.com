@@ -1,0 +1,27 @@
+/* For custom styles in project */
+
+.octocat{
+  height: 20px;
+  margin-bottom: -5px;
+  margin-left: 8px;
+}
+
+img.desaturate {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: 0.8;
+  transition: all 0.5s;
+}
+
+img.desaturate:hover {
+  -webkit-filter: none;
+  filter: none;
+}
+
+table tr:hover{
+  background: initial;
+}
+
+table tr td{
+  padding: 20px;
+}

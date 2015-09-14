@@ -1,0 +1,211 @@
+/* Colors */
+$color-primary: #49bf8b;
+$color-secondary: #fff;
+
+$color-gray-dark: #393939;
+$color-gray: #898989;
+$color-gray-light: #f3f3f3;
+
+$color-success: #00AA4A;
+$color-warning: #EF8A00;
+$color-danger: #EF3200;
+$color-code: #dd1144;
+
+/* Background color */
+$body-bg:  #fff !default;
+
+/* Global text color */
+$text-color: $color-gray !default;
+
+/* Links color */
+$link-color: $color-primary;
+$link-hover-color: lighten($color-primary, 8%);
+
+/* Fonts */
+$font-primary: 'OpenSans', sans-serif, Arial;
+$font-secondary: 'MuseoSans', 'OpenSans', sans-serif;
+$font-monospace: Menlo, Monaco, 'Courier New', monospace;
+$font-icon: Menlo, Monaco, 'Courier New', monospace;
+$font-size: 14px !default;
+
+/* Line height*/
+$line-height: 1.428571429 !default; // 20/14
+/* Computed line-height (`font-size` * `line-height`) */
+$line-height-computed: floor(($font-size * $line-height)) !default; // ~20px
+
+
+/* Headings */
+$headings-font-weight-h1: normal;
+$headings-font-family: $font-primary;
+$headings-font-weight: normal;
+$headings-line-height: 100%;
+$headings-color: $color-gray-dark;
+
+$font-size-h1: 40px !default;
+$font-size-h2: 30px !default;
+$font-size-h3: 20px !default;
+$font-size-h4: 16px !default;
+$font-size-h5: $font-size !default;
+$font-size-h6: 12px !default;
+
+$code-color-bg: $color-gray-light;
+$code-color: $color-gray-dark;
+$code-padding: 2px 6px;
+
+/* Padding, margin */
+$padding-y: 15px;
+$padding-x: 15px;
+
+/* Container */
+$container-max: 1000px;
+$container-width: 95%;
+$container-padding-x: 0;
+$container-padding-y: 0;
+
+/* Grid */
+//screen sizes
+$sc-small: 480px;
+$sc-medium: 768px;
+$sc-large: 992px;
+
+$grid-sizes: ( 
+// name: width
+col1: 8.3333,
+col2: 16.6666,
+col3: 25.0000,
+col4: 33.3333,
+col5: 41.6666,
+col6: 50.0000,
+col7: 58.3333,
+col8: 66.6666,
+col9: 75.0000, 
+col10: 83.3333, 
+col11: 91.6666, 
+col12: 100, 
+);
+
+$grid-paddnig-x: $padding-x;
+$grid-padding-y: $padding-y;
+$grid-margin-x: 0;
+$grid-margin-y: 0;
+
+/* Helpers */
+/* Corners for rounding */
+$radius-all: 5px;
+$radius-top-left: $radius-all;
+$radius-top-right: $radius-all;
+$radius-bottom-right: $radius-all;
+$radius-bottom-left: $radius-all;
+
+/* Buttons */
+$btn-color-bg: $color-primary;
+$btn-color: #fff;
+$btn-height: 40px;
+$btn-padding: 8px;
+$btn-radius: 4px;
+$btn-font-size: 14px;
+
+$btn-border: 2px;
+$btn-small-scale: 0.8;
+
+/* butons colection */
+$btns: (
+//name, color, background-color, hover color, hover background
+("", #ffffff, $color-primary, #ffffff, lighten($color-primary, 10%)),
+("-white", transparent, #ffffff, #ffffff, $color-gray-light),
+("-dark", #ffffff, darken($color-primary, 10%), #ffffff, $color-primary),
+("-light", #ffffff, lighten($color-primary, 10%), #ffffff, lighten($color-primary, 15%)),
+("-gray-dark", $color-gray-light, $color-gray-dark, $color-gray-light, lighten($color-gray-dark, 10%)),
+("-gray-light", $color-gray-dark, $color-gray-light, $color-gray-dark, darken($color-gray-light, 10%))
+);
+
+$btns-bg-color: #fff;
+$btns-pads: 3px 20px 5px 20px;
+$btns-border: 1px solid #000;
+$btns-bg-color: #fff;
+$btns-radius: 4px;
+$btns-hover-bg: $color-primary;
+$btns-hover-color: #fff;
+
+/* Border */
+$borders: (
+//('name', 'size', 'type', 'color')
+('primary', 1px, solid, $color-primary),
+('gray-dark', 1px, solid, $color-gray-dark),
+('gray', 1px, solid, $color-gray),
+('gray-light', 1px, solid, $color-gray-light),
+('black', 1px, solid, #ffffff)
+);
+
+$border-radius: 5px !default;
+$border-radius-large: 10px !default;
+$border-radius-small: 3px !default;
+
+$hr-color: $text-color;
+
+/* Table */
+
+$table-color: #393939;
+$table-head-bg: $color-gray-light;
+$table-color-border: mix($color-gray-dark, $color-gray-light);
+$table-fontsize: $font-size;
+$table-hover-color: $color-gray-light;
+$table-padding: 10px;
+
+$even-bg-color: #eee5de;
+$odd-bg-color: #f6f2ef;
+
+/* Forms */
+$input-color: $text-color;
+$input-line-height: 20px;
+$input-font-size: 15px;
+$input-height: 30px;
+$input-height-small: 20px;
+$input-bg: #ffffff;
+$input-bg-disabled: $color-gray-light;
+$input-border-color: $input-color;
+$input-border-radius: 0;
+$input-padding-y: 10px;
+$input-padding-x: 10px;
+
+$legend-color: $color-gray-dark;
+
+/* KlokanTech components */
+
+$popupbg-bg-color: rgba(55, 55, 55, 0.8);
+$popup-bg-color: #fff;
+
+$multicomplete-tag-bg-color: $color-gray;
+
+/* Top navbar */
+$navbar-top-height: 72px;
+$navbar-top-margin-bottom: 20px;
+
+$navbar-top-zindex: 90;
+$navbar-top-bgcolor: $color-primary;
+$navbar-top-title-padding-bottom: 16px;
+$navbar-top-menu-padding-bottom: 28px;
+
+$navbar-top-title-size: 36px;
+$navbar-top-title-color: #ffffff;
+
+$navbar-top-link-color: $color-gray-light;
+$navbar-top-link-size: 13px;
+$navbar-top-link-hover-color: #ffffff;
+
+$navbar-top-link-hover-color: #ffffff;
+$navbar-top-mobile-btn-color: #ffffff;
+
+/* Side navbar */
+$navside-width: 280px;
+$navside-item-padding: 20px;
+
+
+/* Sticky footer */
+$footer-color: #ffffff;
+$footer-color-bg: $color-gray-dark;
+$footer-link-color: $color-primary;
+$footer-link-hover-color: lighten($color-primary, 10%);
+$footer-link-hover-decoration: none;
+$footer-height: 50px;
+$footer-fontweight: bold;
