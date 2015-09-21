@@ -25,26 +25,25 @@ description:
     <h2>How it works?</h2>
     <div class="container padt-3">
       <div class="col4 center pad-0">
-        <p class="bigger">Upload your images</p>
-        <img src="http://www.maptiler.com/img/how-it-works/hiw-1step.png" alt="How ti works 1st step">
+        <img src="{{site.baseurl}}img/upload.png" alt="How ti works 1st step">
+        <p class="bigger">1. Upload your images<br>
+          via FTP</p>
       </div>
       <div class="col4 center pad-0">
-        <p class="bigger">Process them</p>
-        <img class="mary-6" src="http://www.maptiler.com/img/how-it-works/hiw-2step.png" alt="How ti works 2nd step">
+        <img src="{{site.baseurl}}img/process.png" alt="How ti works 2st step">
+        <p class="bigger">2. Server will process them</p>
       </div>
       <div class="col4 center pad-0">
-        <p class="bigger">Embed into website</p>
-        <img class="mary-5" src="http://www.maptiler.com/img/how-it-works/hiw-3step.png" alt="How ti works 3rd step">
+        <img src="{{site.baseurl}}img/embed.png" alt="How ti works 3st step">
+        <p class="bigger">3. Embed into website<br>
+        or use it as service</p>
       </div>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="col12 center pady-8">
-    <h2>Our customers</h2>
-    <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/britishlibrary.png" alt="Britishlibrary logo">
-    <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/bmarchives.png" alt="Bmarchives logo">
-    <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/leiden.jpg" alt="Leiden logo">
+    <h3>Used and trusted by</h3>
     <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/britishlibrary.png" alt="Britishlibrary logo">
     <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/bmarchives.png" alt="Bmarchives logo">
     <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/leiden.jpg" alt="Leiden logo">
@@ -54,20 +53,26 @@ description:
 <script src="http://openlayers.org/en/v3.2.0/build/ol.js" type="text/javascript"></script>
 <script src="http://klokantech.github.io/iiifviewer/ol-iiifviewer.js"></script>
 <script>
-  var url = 'http://iiif.klokantech.com/demo.jp2/info.json';
-  var IIIF = new IiifViewer('viewer', url, function() {
-    image = IIIF.getMap();
-    view = image.getView();
-    view.setZoom(4);
-  });
+var url = 'http://iiif.klokantech.com/demo.jp2/info.json';
+var IIIF = new IiifViewer('viewer', url, function() {
+  image = IIIF.getMap();
+  view = image.getView();
+  view.setZoom(4);
+});
 
-  document.addEventListener('scroll', function() {
-    var doc = document.documentElement;
-    var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-    if (toTop > 288) {
-      document.getElementById('navbar-top').style.background = '#49bf8b';
+document.addEventListener('scroll', function() {
+  var doc = document.documentElement;
+  var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+  if (toTop > 288) {
+    document.getElementById('navbar-top').style.background = '#49bf8b';
+  } else {
+    var transparent = toTop / (document.getElementById('viewer').clientHeight - 72);
+    var navbar = document.getElementById('navbar-top');
+    if (toTop > 100) {
+      navbar.style.background = 'rgba(73, 191, 139,' + transparent + ')';
     } else {
-      document.getElementById('navbar-top').style.background = 'rgba(255, 255, 255, 0.3)';
+      navbar.style.background = 'rgba(255, 255, 255, 0.4)';
     }
-  }, true);
+  }
+}, true);
 </script>
