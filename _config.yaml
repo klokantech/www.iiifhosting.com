@@ -14,4 +14,4 @@ defaults:
     values:
       layout: "default"
 
-baseurl: "http://klokantech.github.io/www.klokanstorage.com/"
+baseurl: "http://www.klokanstorage.com/"
