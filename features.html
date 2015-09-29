@@ -1,6 +1,6 @@
 ---
 title: Features
-keywords: 
+keywords:
 description:
 ---
 
@@ -23,6 +23,7 @@ description:
     <div id="featuresviewer"></div>
   </div>
 </div>
+
 <div class="row bg-gray-light pady-4">
   <div class="container">
     <div class="col6 center">
@@ -38,6 +39,7 @@ description:
     </div>
   </div>
 </div>
+
 <div class="row container pady-4">
   <div class="col6">
     <h2>Simple and fast upload</h2>
@@ -48,17 +50,31 @@ description:
     </ul>
   </div>
   <div class="col6 center">
-
   </div>
 </div>
+
+<div class="row bg-gray-light pady-4">
+  <div class="container">
+    <div class="col6 center">
+    </div>
+    <div class="col6">
+      <h2>Fast and reliable</h2>
+      <p>Thanks to the infrastructure of servers worldwide, even the
+        high-resolution images are loaded in seconds. Reliable Fujitsu
+        servers are used in two independent data centers that are located
+        on the backhaul network.</p>
+    </div>
+  </div>
+</div>
+
 <link href="http://openlayers.org/en/v3.2.0/css/ol.css" rel="stylesheet">
 <script src="http://openlayers.org/en/v3.2.0/build/ol.js" type="text/javascript"></script>
 <script src="http://klokantech.github.io/iiifviewer/ol-iiifviewer.js"></script>
 <script>
-  var url = 'http://iiif.klokantech.com/demo.jp2/info.json';
-  var IIIF = new IiifViewer('featuresviewer', url, function() {
-    image = IIIF.getMap();
-    view = image.getView();
-    view.setZoom(1);
-  });
+var url = 'http://iiif.klokantech.com/demo.jp2/info.json';
+var IIIF = new IiifViewer('featuresviewer', url, function() {
+  image = IIIF.getMap();
+  view = image.getView();
+  view.setZoom(1);
+});
 </script>
