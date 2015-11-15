@@ -1,4 +1,4 @@
-name: KlokanStorage
+name: IIIFHosting
 
 description:
 
@@ -14,4 +14,4 @@ defaults:
     values:
       layout: "default"
 
-baseurl: "http://www.iiifhosting.com/"
+baseurl: "/"
