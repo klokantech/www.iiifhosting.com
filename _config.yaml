@@ -6,6 +6,10 @@ permalink: pretty
 
 sass:
   style: :compressed
+  sass_dir: styles/_sass
+  
+exclude:
+  - styles/base.scss
 
 defaults:
   -
