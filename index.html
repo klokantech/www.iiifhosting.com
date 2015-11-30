@@ -5,71 +5,250 @@ keywords: IIIFHosting, strorage, iiif, hosting
 description:
 ---
 
-<div class="row bg-gray-light">
-  <div class="col12 bg-gray-light pad-0" id="viewer">
-
-  </div>
-</div>
 <div class="row container">
-  <div class="col10 offset1 center padb-8 padt-4">
-    <h1>Lightning fast hosting for large images</h1>
-    <p class="bigger">Quick and effortless service built 
-      with support of <a>IIIF protocol</a>,<br> a proven solution for 
-      the hosting of large imagery.</p>
+  <div id="banner" class="col10 offset1 center">
+    <h1 class="white">Lightning fast hosting for large images</h1>
+    <p class="bigger white">Quick and effortless service built with support of 
+      IIIF protocol,<br> a proven solution for the hosting of large imagery.</p>
+    <a href="#learnmore" class="btn">Learn more</a>
   </div>
 </div>
-<div class="row bg-gray-light">
-  <div class="col12 center pady-4">
-    <h2>How it works?</h2>
-    <div class="container padt-3">
-      <div class="col4 center pad-0">
-        <img src="{{site.baseurl}}img/upload.png" alt="How ti works 1st step">
-        <p class="bigger">1. Upload your images</p>
+<div class="bg-white">
+  <div class="row bg-white">
+    <div class="col12 center pady-4">
+      <h2>How it works?</h2>
+      <div class="container padt-3">
+        <div class="col4 center pad-0">
+          <img src="{{site.baseurl}}img/upload.png" alt="How ti works 1st step">
+          <p class="bigger">1. Upload your images</p>
+        </div>
+        <div class="col4 center pad-0">
+          <img src="{{site.baseurl}}img/process.png" alt="How ti works 2st step">
+          <p class="bigger">2. Server will process them</p>
+        </div>
+        <div class="col4 center pad-0">
+          <img src="{{site.baseurl}}img/embed.png" alt="How ti works 3st step">
+          <p class="bigger">3. Zoomable images are online<br>
+            or use it as service</p>
+        </div>
       </div>
-      <div class="col4 center pad-0">
-        <img src="{{site.baseurl}}img/process.png" alt="How ti works 2st step">
-        <p class="bigger">2. Server will process them</p>
+    </div>
+  </div>
+
+  <div class="bg-gray-light borderbottom-block bordertop-block">
+    <div class="row container padt-4">
+      <div class="col12 center">
+        <h1>Features</h1>
       </div>
-      <div class="col4 center pad-0">
-        <img src="{{site.baseurl}}img/embed.png" alt="How ti works 3st step">
-        <p class="bigger">3. Zoomable images are online<br>
-          or use it as service</p>
+    </div>
+    <div class="row container padb-4">
+      <div class="col6">
+        <h2>Transfer of files</h2>
+        <p>Hundreds and even thousands of images can be copied easily via ftp protocol directly to our servers, where it will be processed and immediately published on the web. On request, it is possible to set up an automatic synchronization with your local HDD where copied files will automatically appear zoomable on the web.</p>
+      </div>
+      <div class="col6">
+        <h2>Processing</h2>
+        <p>IIIF server has been developed and tested on terrabytes of images from well known public archives. The system is designed for processing of huge amounts of image data quickly, with no needs for own infrastructure or staff. For more information, visit the <a>Technology section</a>.</p>
+      </div>
+    </div>
+
+    <div class="row container pady-4">
+      <div class="col6">
+        <h2>Result</h2>
+        <p>Once your images are processed, you can view them online or easily embed into your website or blog. There are also many <a>compatible tools</a> available for further specific needs, such as annotations, georeferencing or publishing.</p>
+      </div>
+      <div class="col6">
+        <h2>Security</h2>
+        <p>The system serves as a backup for your data in case of failure of your original HDD. Https protocol is supported for secure access. Thanks to IIIF protocol, the online images are interoperable with no vendor lock-in.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col12 center">
+        <h2>Compatible tools</h2>
+        <p class="bigger">Once your image is online, thanks to iiif standard you can benefit 
+          from various external online tools.<br> Here are several 
+          recommendations from us:</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col6"></div>
+      <div class="col5">
+
+        <h3>Viewers</h3>
+        <p>Next to the default iiif viewer, there are more compatible viewers such as OpenSeaDragon, Openlayers leaflet, Universal Viewer etc..</p>
+
+        <h3>Compare images</h3>
+        <p>Images from many online sources can be easily loaded and compared to each other in research tools for digital humanities such as Mirador.</p>
+
+        <h3>Digital archive</h3>
+        <p>Web publishing for archives can be done with Omeka, where the administration, with possibilities to add metadata to your images is available.</p>
+
+        <h3>Maps</h3>
+        <p>Geographical location can be easily added to any map with Georeferencer</p>
+
+        <h3>Annotations</h3>
+        <p>T‑PEN can attach transcription data to the actual lines of the original image document in a simple, flexible interface. More information available at http://t-pen.org/TPEN/.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row bordertop-block">
+    <div class="col12 center">
+      <h1>Technology</h1>
+      <p class="bigger">IIIF is powered by open source technologies
+        with the full support of open standards.<br>
+        Our company actively contributes to most of them.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row center">
+      <div class="col4">
+        <div class="border-gray pad-1 round techbox">
+          <h2>IIIFServer</h2>
+          <p>IPImage is an advanced high-performance image server system
+            for web-based streamed viewing and zooming of ultra high-resolution
+            images. The system can comfortably handle gigapixel size images as
+            well as advanced image features such as 8, 16 and 32 bits per channel,
+            CIELAB colorimetric images and scientific imagery such as multispectral
+            images, image sequences and 3D surface topologies.</p>
+          <a class="btn mary-3" href="http://www.iiifserver.com" target="_blank">
+            Read more about IIIFServer
+          </a>
+        </div>
+      </div>
+      <div class="col4">
+        <div class="border-gray pad-1 round techbox">
+          <h2>IIIFViewer</h2>
+          <p>Fast mobile-ready viewer powered by OpenLayers 3. IIIF viewer from 
+            Klokan Technologies is optimized for desktop and mobile devices 
+            (iOS, Android), is open-source, free to use and has, compared to 
+            other viewers, the following extra features:</p>
+          <ul class="text-left marx-6">
+            <li>Rotation on client side</li>
+            <li>Drawing tools</li>
+            <li>Color adjustment</li>
+          </ul>
+
+          <a href="https://github.com/klokantech/iiifviewer" class="btn mary-3" target="_blank">
+            View on github
+            <img class="octocat" src="{{site.baseurl}}img/GitHub-Mark-Light-32px.png" alt="Github">
+          </a>
+        </div>
+      </div>
+      <div class="col4">
+        <div class="border-gray pad-1 round techbox">
+          <h2>Storage</h2>
+          <p class="padb-3">For storage of customer’s data are used Fujitsu ETERNUS DX80 S2 
+            servers with Intel® Xeon® processor. These reliable and flexible 
+            disk storage systems are located on the backhaul network.</p>
+          <img src="{{site.baseurl}}img/server.jpg" alt="Fujitsu" style="width: 80%;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row padt-4">
+      <div class="col12 center">
+        <h1>Pricing</h1>
+        <p class="bigger">Multiple storage capacity that perfectly fits to your project.</p>
+      </div>
+    </div>
+    <div class="row padb-10">
+      <div class="col10 offset1">
+        <table class="center">
+          <tr class="bg-gray-light b">
+            <td>Disk space</td>
+            <td class="bigger">30 GB</td>
+            <td class="bigger">100 GB</td>
+            <td class="bigger">1 TB</td>
+            <td class="bigger">2 TB</td>
+            <td class="bigger">3 TB</td>
+          </tr>
+          <tr>
+            <td class="b">Maximum images</td>
+            <td>15,000</td>
+            <td>100,000</td>
+            <td>1,500,000</td>
+            <td>3,000,000</td>
+            <td>4,500,000</td>
+          </tr>
+          <tr class="bg-gray-light strong">
+            <td>Price/year</td>
+            <td>929 USD</td>
+            <td>1,399 USD</td>
+            <td>2,699 USD</td>
+            <td>3,969 USD</td>
+            <td>5,259 USD</td>
+          </tr>
+          <tr>
+            <td class="borderleft-gray-light borderbottom-gray-light"></td>
+            <td><a href="http://sites.fastspring.com/klokantech/product/hosting30gb" class="btn-small" target="_blank">Buy now</a></td>
+            <td><a href="http://sites.fastspring.com/klokantech/product/hosting100gb" class="btn-small" target="_blank">Buy now</a></td>
+            <td><a href="http://sites.fastspring.com/klokantech/product/hosting1tb" class="btn-small" target="_blank">Buy now</a></td>
+            <td><a href="http://sites.fastspring.com/klokantech/product/hosting2tb" class="btn-small" target="_blank">Buy now</a></td>
+            <td><a href="http://sites.fastspring.com/klokantech/product/hosting3tb" class="btn-small" target="_blank">Buy now</a></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col12 center pady-8">
+      <h3>Used and trusted by</h3>
+      <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/britishlibrary.png" alt="Britishlibrary logo">
+      <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/bmarchives.png" alt="Bmarchives logo">
+      <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/leiden.jpg" alt="Leiden logo">
+    </div>
+  </div>
+
+  <div class="row bg-gray-light borderbottom-block bordertop-block">
+    <div class="container">
+      <div class="col8 offset2 center">
+        <h2>About us</h2>
+        <p>This service was built with passion for online publishing 
+          and applications of open-source software for <br>the cultural 
+          heritage sector.
+          <a href="http://www.klokantech.com/">Klokan Technologies GmbH</a> 
+          is a team of enthusiasts, who actively<br>
+          participate on various research and open-source projects 
+          internationally.<br> For custom development of online applications, 
+          just <a href="http://www.klokantech.com/contact/">contact us</a>.</p>
       </div>
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col12 center pady-8">
-    <h3>Used and trusted by</h3>
-    <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/britishlibrary.png" alt="Britishlibrary logo">
-    <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/bmarchives.png" alt="Bmarchives logo">
-    <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/leiden.jpg" alt="Leiden logo">
-  </div>
-</div>
+
+
+
 <link href="http://openlayers.org/en/v3.2.0/css/ol.css" rel="stylesheet">
 <script src="http://openlayers.org/en/v3.2.0/build/ol.js" type="text/javascript"></script>
 <script src="http://klokantech.github.io/iiifviewer/ol-iiifviewer.js"></script>
 <script>
-var url = 'http://iiif.klokantech.com/demo.jp2/info.json';
+var url = 'http://demo.iiifhosting.com/iiif/mona_lisa/info.json';
 var IIIF = new IiifViewer('viewer', url, function() {
   image = IIIF.getMap();
   view = image.getView();
   view.setZoom(4);
 });
 
-document.addEventListener('scroll', function() {
-  var doc = document.documentElement;
-  var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-  if (toTop > 288) {
-    document.getElementById('navbar-top').style.background = '#49bf8b';
-  } else {
-    var transparent = toTop / (document.getElementById('viewer').clientHeight - 72);
-    var navbar = document.getElementById('navbar-top');
-    if (toTop > 100) {
-      navbar.style.background = 'rgba(73, 191, 139,' + transparent + ')';
-    } else {
-      navbar.style.background = 'rgba(255, 255, 255, 0.4)';
-    }
-  }
-}, true);
+//document.addEventListener('scroll', function() {
+//  var doc = document.documentElement;
+//  var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+//  if (toTop > 288) {
+//    document.getElementById('navbar-top').style.background = '#49bf8b';
+//  } else {
+//    var transparent = toTop / (document.getElementById('viewer').clientHeight - 72);
+//    var navbar = document.getElementById('navbar-top');
+//    if (toTop > 100) {
+//      navbar.style.background = 'rgba(73, 191, 139,' + transparent + ')';
+//    } else {
+//      navbar.style.background = 'rgba(255, 255, 255, 0.4)';
+//    }
+//  }
+//}, true);
 </script>

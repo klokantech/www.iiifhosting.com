@@ -10,27 +10,31 @@
     <meta name="author" content="Klokan Technologies GmbH" />
     <meta name="description" content="{{ site.description }}" />
     <meta name="keywords" content="{{ site.keywords }} IIIFHosting, iiif, protocol, strorage, hosting" />
+    <meta name="theme-color" content="#02a899">
 
     <link href="{{ site.baseurl }}base.css" rel="stylesheet" />
     <script type="text/javascript" src="{{ site.baseurl }}js/index.js"></script>
   </head>
-  <body {% if page.id == 'home' %}class="home"{% endif %}>
+  <body>
+
+    <div id="viewer"></div>
+
     <div id="navbar-top">
       <div class="container">
         <div class="logo">
           <h1><a href="{{ site.baseurl }}">IIIFHosting</a></h1>
         </div>
         <ul class="nav">
-          <li><a href="{{ site.baseurl }}features/">Features</a></li>
-          <li><a href="{{ site.baseurl }}technology/">Technology</a></li>
-          <li><a href="{{ site.baseurl }}pricing/">Pricing</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#technology">Technology</a></li>
+          <li><a href="#pricing">Pricing</a></li>
         </ul>
         <div class="nav-mobile">
           <div id="nav-mobile-btn">H</div>
           <ul id="nav-mobile-nav">
-            <li><a href="{{ site.baseurl }}features/">Features</a></li>
-            <li><a href="{{ site.baseurl }}technology/">Technology</a></li>
-            <li><a href="{{ site.baseurl }}pricing/">Pricing</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#technology">Technology</a></li>
+            <li><a href="#pricing">Pricing</a></li>
           </ul>
         </div>
       </div>
@@ -42,11 +46,10 @@
     </div>
     <div class="footer">
       <div class="container">
-        <div class="row">
-          <div class="col12">
-            <span class="copyright">Copyright </span>&copy; 2015 <a href="http://klokantech.com">Klokan Technologies GmbH</a>
-          </div>
-        </div>
+        <a class="icon klokan" href="http://klokantech.com">K</a>
+        <a class="icon" href="https://twitter.com/klokantech">T</a>
+        <a class="icon" href="https://plus.google.com/+Klokantech/">G</a>
+        <a class="icon" href="https://www.facebook.com/klokantech">F</a>
       </div>
     </div>
   </body>
