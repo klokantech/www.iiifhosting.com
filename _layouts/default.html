@@ -19,7 +19,7 @@
 
     <div id="viewer"></div>
 
-    <div id="navbar-top" class="hidden">
+    <div id="navbar-top" {% if page.id == 'home' %}class="hidden"{% endif %}>
       <div class="container">
         <div class="logo">
           <h1><a href="{{ site.baseurl }}">IIIFHosting</a></h1>

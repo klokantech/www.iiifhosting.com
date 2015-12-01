@@ -10,7 +10,19 @@ description:
     <h1 class="white">Lightning fast hosting for large images</h1>
     <p class="bigger white">Quick and effortless service built with support of 
       IIIF protocol,<br> a proven solution for the hosting of large imagery.</p>
-    <a href="#learnmore" class="btn">Learn more</a>
+    <a href="#learnmore" class="btn" onclick="run()">Learn more</a>
+  </div>
+</div>
+<div id="navbar-bottom" class="row">
+  <div class="col12 pad-0">
+    <div class="container">
+      <h1><a href="{{ site.baseurl }}">IIIFHosting</a></h1>
+      <ul class="nav">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#technology">Technology</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </div>
   </div>
 </div>
 <div class="bg-white">
@@ -226,24 +238,38 @@ description:
 <script src="http://openlayers.org/en/v3.2.0/build/ol.js" type="text/javascript"></script>
 <script src="http://klokantech.github.io/iiifviewer/ol-iiifviewer.js"></script>
 <script>
-  console.log(window.innerHeight + 'px');
-  document.getElementById('banner').style.height = window.innerHeight + 'px';
+      console.log(window.innerHeight + 'px');
+      document.getElementById('banner').style.height = (window.innerHeight - 72) + 'px';
 
-  var url = 'http://demo.iiifhosting.com/iiif/mona_lisa/info.json';
-  var IIIF = new IiifViewer('viewer', url, function() {
-    image = IIIF.getMap();
-    view = image.getView();
-    view.setZoom(4);
-  });
+      var url = 'http://demo.iiifhosting.com/iiif/mona_lisa/info.json';
+      var IIIF = new IiifViewer('viewer', url, function() {
+        image = IIIF.getMap();
+        view = image.getView();
+        console.log(view.getCenter());
+        view.setZoom(4.5);
+        view.setCenter([3500, -2573]);
+      });
 
-  document.addEventListener('scroll', function() {
-    var doc = document.documentElement;
-    var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-    var navbarTop = document.getElementById('navbar-top');
-    if (toTop < window.innerHeight) {
-      navbarTop.className = 'hidden';
-    } else {
-      navbarTop.className = '';
-    }
-  }, true);
+      document.addEventListener('scroll', function() {
+        var doc = document.documentElement;
+        var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+        var navbarTop = document.getElementById('navbar-top');
+        //nav
+        if (toTop < window.innerHeight - 72) {
+          navbarTop.className = 'hidden';
+        } else {
+          navbarTop.className = '';
+        }
+      }, true);
+
+      function run() {
+        //map animations
+        var pan = ol.animation.pan({
+          duration: 2000,
+          source: /** @type {ol.Coordinate} */ (view.getCenter())
+        });
+        image.beforeRender(pan);
+        view.setZoom(2);
+        view.setCenter([3739.5, -5573]);
+      }
 </script>
