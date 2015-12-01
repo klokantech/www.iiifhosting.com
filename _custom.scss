@@ -90,13 +90,16 @@ body{
 
 #banner{
   height: 700px;
-  padding-top: 200px;
 
   #banner-content{
     position: absolute;
     top: 50%;
     height: 300px;
     margin-top: -186px; /* height / 2 + navbar height / 2*/
+    position: absolute;
+    left: 50%;
+    width: 870px;
+    margin-left: -435px;
   }
 
   h1{
