@@ -223,32 +223,27 @@ description:
   </div>
 </div>
 
-
-
-<link href="http://openlayers.org/en/v3.2.0/css/ol.css" rel="stylesheet">
 <script src="http://openlayers.org/en/v3.2.0/build/ol.js" type="text/javascript"></script>
 <script src="http://klokantech.github.io/iiifviewer/ol-iiifviewer.js"></script>
 <script>
-var url = 'http://demo.iiifhosting.com/iiif/mona_lisa/info.json';
-var IIIF = new IiifViewer('viewer', url, function() {
-  image = IIIF.getMap();
-  view = image.getView();
-  view.setZoom(4);
-});
+  console.log(window.innerHeight + 'px');
+  document.getElementById('banner').style.height = window.innerHeight + 'px';
 
-//document.addEventListener('scroll', function() {
-//  var doc = document.documentElement;
-//  var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-//  if (toTop > 288) {
-//    document.getElementById('navbar-top').style.background = '#49bf8b';
-//  } else {
-//    var transparent = toTop / (document.getElementById('viewer').clientHeight - 72);
-//    var navbar = document.getElementById('navbar-top');
-//    if (toTop > 100) {
-//      navbar.style.background = 'rgba(73, 191, 139,' + transparent + ')';
-//    } else {
-//      navbar.style.background = 'rgba(255, 255, 255, 0.4)';
-//    }
-//  }
-//}, true);
+  var url = 'http://demo.iiifhosting.com/iiif/mona_lisa/info.json';
+  var IIIF = new IiifViewer('viewer', url, function() {
+    image = IIIF.getMap();
+    view = image.getView();
+    view.setZoom(4);
+  });
+
+  document.addEventListener('scroll', function() {
+    var doc = document.documentElement;
+    var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+    var navbarTop = document.getElementById('navbar-top');
+    if (toTop < window.innerHeight) {
+      navbarTop.className = 'hidden';
+    } else {
+      navbarTop.className = '';
+    }
+  }, true);
 </script>
