@@ -115,7 +115,7 @@ $btns: (
 ("-dark", #ffffff, darken($color-primary, 10%), #ffffff, $color-primary),
 ("-light", #ffffff, lighten($color-primary, 10%), #ffffff, darken($color-primary, 5%)),
 ("-gray-dark", $color-gray-light, $color-gray-dark, $color-gray-light, darken($color-gray-dark, 5%)),
-("-gray-light", $color-gray-dark, $color-gray-light, $color-gray-dark, darken($color-gray-light, 5%))
+("-block", #d4d8de, $color-gray-light, $color-gray-dark, darken($color-gray-light, 5%))
 );
 
 $btns-color: #fff;

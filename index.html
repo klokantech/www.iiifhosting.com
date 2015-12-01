@@ -7,10 +7,12 @@ description:
 
 <div class="row container">
   <div id="banner" class="col10 offset1 center">
-    <h1 class="white">Lightning fast hosting for large images</h1>
-    <p class="bigger white">Quick and effortless service built with support of 
-      IIIF protocol,<br> a proven solution for the hosting of large imagery.</p>
-    <a href="#learnmore" class="btn" onclick="run()">Learn more</a>
+    <div id="banner-content">
+      <h1 class="white">Lightning fast hosting for large images</h1>
+      <p class="bigger white">Quick and effortless service built with support of
+        IIIF protocol,<br> a proven solution for the hosting of large imagery.</p>
+      <a href="#learnmore" class="btn-large" onclick="runAnimation()">Learn more</a>
+    </div>
   </div>
 </div>
 <div id="navbar-bottom" class="row">
@@ -78,14 +80,14 @@ description:
 
   <div class="container">
     <div class="row">
-      <div class="col12 center">
+      <div class="col12 center padt-6">
         <h2>Compatible tools</h2>
-        <p class="bigger">Once your image is online, thanks to iiif standard you can benefit 
-          from various external online tools.<br> Here are several 
+        <p class="bigger">Once your image is online, thanks to iiif standard you can benefit
+          from various external online tools.<br> Here are several
           recommendations from us:</p>
       </div>
     </div>
-    <div class="row">
+    <div class="row padb-6">
       <div class="col6"></div>
       <div class="col5">
 
@@ -108,7 +110,7 @@ description:
   </div>
 
   <div class="row bordertop-block">
-    <div class="col12 center">
+    <div class="col12 center padt-6">
       <h1>Technology</h1>
       <p class="bigger">IIIF is powered by open source technologies
         with the full support of open standards.<br>
@@ -116,7 +118,7 @@ description:
     </div>
   </div>
   <div class="container">
-    <div class="row center">
+    <div class="row center padb-8">
       <div class="col4">
         <div class="border-gray pad-1 round techbox">
           <h2>IIIFServer</h2>
@@ -126,35 +128,34 @@ description:
             well as advanced image features such as 8, 16 and 32 bits per channel,
             CIELAB colorimetric images and scientific imagery such as multispectral
             images, image sequences and 3D surface topologies.</p>
-          <a class="btn mary-3" href="http://www.iiifserver.com" target="_blank">
-            Read more about IIIFServer
-          </a>
         </div>
+        <a class="btn techbox-btn mary-3" href="http://www.iiifserver.com" target="_blank">
+          Read more about IIIFServer
+        </a>
       </div>
       <div class="col4">
         <div class="border-gray pad-1 round techbox">
           <h2>IIIFViewer</h2>
-          <p>Fast mobile-ready viewer powered by OpenLayers 3. IIIF viewer from 
-            Klokan Technologies is optimized for desktop and mobile devices 
-            (iOS, Android), is open-source, free to use and has, compared to 
+          <p>Fast mobile-ready viewer powered by OpenLayers 3. IIIF viewer from
+            Klokan Technologies is optimized for desktop and mobile devices
+            (iOS, Android), is open-source, free to use and has, compared to
             other viewers, the following extra features:</p>
           <ul class="text-left marx-6">
             <li>Rotation on client side</li>
             <li>Drawing tools</li>
             <li>Color adjustment</li>
           </ul>
-
-          <a href="https://github.com/klokantech/iiifviewer" class="btn mary-3" target="_blank">
-            View on github
-            <img class="octocat" src="{{site.baseurl}}img/GitHub-Mark-Light-32px.png" alt="Github">
-          </a>
         </div>
+        <a href="https://github.com/klokantech/iiifviewer" class="btn techbox-btn mary-3" target="_blank">
+          View on github
+          <img class="octocat" src="{{site.baseurl}}img/GitHub-Mark-Light-32px.png" alt="Github">
+        </a>
       </div>
       <div class="col4">
         <div class="border-gray pad-1 round techbox">
           <h2>Storage</h2>
-          <p class="padb-3">For storage of customer’s data are used Fujitsu ETERNUS DX80 S2 
-            servers with Intel® Xeon® processor. These reliable and flexible 
+          <p class="padb-3">For storage of customer’s data are used Fujitsu ETERNUS DX80 S2
+            servers with Intel® Xeon® processor. These reliable and flexible
             disk storage systems are located on the backhaul network.</p>
           <img src="{{site.baseurl}}img/server.jpg" alt="Fujitsu" style="width: 80%;">
         </div>
@@ -162,15 +163,15 @@ description:
     </div>
   </div>
 
-  <div class="container">
-    <div class="row padt-4">
+  <div class="bordertop-block">
+    <div class="row padt-6">
       <div class="col12 center">
         <h1>Pricing</h1>
         <p class="bigger">Multiple storage capacity that perfectly fits to your project.</p>
       </div>
     </div>
-    <div class="row padb-10">
-      <div class="col10 offset1">
+    <div class="row">
+      <div class="col10 offset1 borderbottom-block center padb-6">
         <table class="center">
           <tr class="bg-gray-light b">
             <td>Disk space</td>
@@ -196,22 +197,23 @@ description:
             <td>3,969 USD</td>
             <td>5,259 USD</td>
           </tr>
-          <tr>
-            <td class="borderleft-gray-light borderbottom-gray-light"></td>
-            <td><a href="http://sites.fastspring.com/klokantech/product/hosting30gb" class="btn-small" target="_blank">Buy now</a></td>
-            <td><a href="http://sites.fastspring.com/klokantech/product/hosting100gb" class="btn-small" target="_blank">Buy now</a></td>
-            <td><a href="http://sites.fastspring.com/klokantech/product/hosting1tb" class="btn-small" target="_blank">Buy now</a></td>
-            <td><a href="http://sites.fastspring.com/klokantech/product/hosting2tb" class="btn-small" target="_blank">Buy now</a></td>
-            <td><a href="http://sites.fastspring.com/klokantech/product/hosting3tb" class="btn-small" target="_blank">Buy now</a></td>
-          </tr>
         </table>
+
+        <a href="http://sites.fastspring.com/klokantech/product/hosting" 
+           class="btn-large mary-4" target="_blank">Buy now</a>
+        <p>If you need prepaid please 
+          <a href="http://ww.klokantech.com/contact/" target="_blank">contact us</a>.</p>
+
       </div>
     </div>
   </div>
 
   <div class="row">
-    <div class="col12 center pady-8">
-      <h3>Used and trusted by</h3>
+    <div class="col6 text-right pady-8">
+      <h2 class="padx-4">Used and trusted by</h2>
+    </div>
+    <div class="col6 pady-8">
+
       <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/britishlibrary.png" alt="Britishlibrary logo">
       <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/bmarchives.png" alt="Bmarchives logo">
       <img class="desaturate mar-1" src="{{site.baseurl}}img/institutions/leiden.jpg" alt="Leiden logo">
@@ -220,56 +222,56 @@ description:
 
   <div class="row bg-gray-light borderbottom-block bordertop-block">
     <div class="container">
-      <div class="col8 offset2 center">
+      <div class="col8 offset2 center pady-6">
         <h2>About us</h2>
-        <p>This service was built with passion for online publishing 
-          and applications of open-source software for <br>the cultural 
+        <p>This service was built with passion for online publishing
+          and applications of open-source software for <br>the cultural
           heritage sector.
-          <a href="http://www.klokantech.com/">Klokan Technologies GmbH</a> 
+          <a href="http://www.klokantech.com/">Klokan Technologies GmbH</a>
           is a team of enthusiasts, who actively<br>
-          participate on various research and open-source projects 
-          internationally.<br> For custom development of online applications, 
+          participate on various research and open-source projects
+          internationally.<br> For custom development of online applications,
           just <a href="http://www.klokantech.com/contact/">contact us</a>.</p>
       </div>
     </div>
   </div>
 </div>
 
-<script src="http://openlayers.org/en/v3.2.0/build/ol.js" type="text/javascript"></script>
-<script src="http://klokantech.github.io/iiifviewer/ol-iiifviewer.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.11.2/ol.min.js" type="text/javascript"></script>
+<script src="js/ol-iiifviewer.js"></script>
 <script>
-      console.log(window.innerHeight + 'px');
-      document.getElementById('banner').style.height = (window.innerHeight - 72) + 'px';
+        document.getElementById('banner').style.height = (window.innerHeight - 72) + 'px';
 
-      var url = 'http://demo.iiifhosting.com/iiif/mona_lisa/info.json';
-      var IIIF = new IiifViewer('viewer', url, function() {
-        image = IIIF.getMap();
-        view = image.getView();
-        console.log(view.getCenter());
-        view.setZoom(4.5);
-        view.setCenter([3500, -2573]);
-      });
+        var url = 'http://demo.iiifhosting.com/iiif/mona_lisa/info.json';
+        var IIIF = new IiifViewer('viewer', url, function() {
+          image = IIIF.getMap();
+          view = image.getView();
 
-      document.addEventListener('scroll', function() {
-        var doc = document.documentElement;
-        var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-        var navbarTop = document.getElementById('navbar-top');
-        //nav
-        if (toTop < window.innerHeight - 72) {
-          navbarTop.className = 'hidden';
-        } else {
-          navbarTop.className = '';
-        }
-      }, true);
-
-      function run() {
-        //map animations
-        var pan = ol.animation.pan({
-          duration: 2000,
-          source: /** @type {ol.Coordinate} */ (view.getCenter())
+          view.setZoom(4);
+          view.setCenter([3500, -3000]);
         });
-        image.beforeRender(pan);
-        view.setZoom(2);
-        view.setCenter([3739.5, -5573]);
-      }
+
+        document.addEventListener('scroll', function() {
+          var doc = document.documentElement;
+          var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+          var navbarTop = document.getElementById('navbar-top');
+          //nav
+          if (toTop < window.innerHeight - 72) {
+            navbarTop.className = 'hidden';
+          } else {
+            navbarTop.className = '';
+          }
+        }, true);
+
+        function runAnimation() {
+          //map animations
+          var pan = ol.animation.pan({
+            duration: 2000,
+            source: /** @type {ol.Coordinate} */ (view.getCenter())
+          });
+          image.beforeRender(pan);
+//      view.setZoom(2);
+          view.setCenter([3739.5, -5573]);
+        }
+
 </script>
