@@ -20,14 +20,14 @@
     <div id="viewer"></div>
 
     <div id="navbar-top" {% if page.id == 'home' %}class="hidden"{% endif %}>
-      <div class="container">
+         <div class="container">
         <div class="logo">
           <h1><a href="{{ site.baseurl }}">IIIFHosting</a></h1>
         </div>
         <ul class="nav">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#technology">Technology</a></li>
-          <li><a href="#pricing">Pricing</a></li>
+          <li><a onclick="scrollTo('features')">Features</a></li>
+          <li><a onclick="scrollTo('technology')">Technology</a></li>
+          <li><a onclick="scrollTo('pricing')">Pricing</a></li>
         </ul>
         <div class="nav-mobile">
           <div id="nav-mobile-btn">H</div>
