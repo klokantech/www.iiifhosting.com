@@ -122,7 +122,13 @@ body{
 }
 
 .techbox-btn{
-  margin-top: -20px;
+  margin-top: -22px;
+}
+
+h2 img{
+  vertical-align: middle;
+  padding-bottom: 10px;
+  padding-right: 20px;
 }
 
 .btn-large{
@@ -130,7 +136,11 @@ body{
   padding: 12px 40px;
 }
 
+.btn-stroke-gray:hover{
+  background-color: #fff;
+}
+
 //styles bug
-.btn, .btn-small{
+.btn, .btn-small, .btn-stroke, .btn-stroke-gray{
   line-height: 1.3;
 }
