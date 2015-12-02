@@ -27,7 +27,7 @@ description: Lightning fast hosting for large images.
     </div>
   </div>
 </div>
-<div class="bg-white">
+<div class="bg-white bordertop-block">
   <div class="row bg-white">
     <div class="col12 center pady-4">
       <h2>How it works?</h2>
@@ -49,7 +49,7 @@ description: Lightning fast hosting for large images.
     </div>
   </div>
 
-  <div class="bg-gray-light borderbottom-block bordertop-block">
+  <div id="features" class="bg-gray-light borderbottom-block bordertop-block">
     <div class="row container padt-4">
       <div class="col12 center">
         <h1>Features</h1>
@@ -136,7 +136,7 @@ description: Lightning fast hosting for large images.
     </div>
   </div>
 
-  <div class="row bordertop-block">
+  <div id="technology" class="row bordertop-block">
     <div class="col12 center padt-6">
       <h1>Technology</h1>
       <p class="bigger">IIIF is powered by open source technologies
@@ -149,7 +149,7 @@ description: Lightning fast hosting for large images.
       <div class="col4">
         <div class="border-gray pad-1 round techbox">
           <h2>IIIFServer</h2>
-          <p>IPImage is an advanced high-performance image server system
+          <p>IIPImage is an advanced high-performance image server system
             for web-based streamed viewing and zooming of ultra high-resolution
             images. The system can comfortably handle gigapixel size images as
             well as advanced image features such as 8, 16 and 32 bits per channel,
@@ -171,7 +171,7 @@ description: Lightning fast hosting for large images.
           <ul class="text-left marx-6">
             <li>Rotation on client side</li>
             <li>Drawing tools</li>
-            <li>Color adjustment</li>
+            <li>WebGL accelerated</li>
           </ul>
         </div>
         <a href="https://github.com/klokantech/iiifviewer" 
@@ -192,7 +192,7 @@ description: Lightning fast hosting for large images.
     </div>
   </div>
 
-  <div class="bordertop-block">
+  <div id="pricing" class="bordertop-block">
     <div class="row padt-6">
       <div class="col12 center">
         <h1>Pricing</h1>
@@ -219,15 +219,15 @@ description: Lightning fast hosting for large images.
             <td>4,500,000</td>
           </tr>
           <tr class="bg-gray-light strong">
-            <td>Price/year</td>
-            <td>929 USD</td>
-            <td>1,399 USD</td>
-            <td>2,699 USD</td>
-            <td>3,969 USD</td>
-            <td>5,259 USD</td>
+            <td>Price/month *</td>
+            <td>69 USD</td>
+            <td>99 USD</td>
+            <td>199 USD</td>
+            <td>299 USD</td>
+            <td>399 USD</td>
           </tr>
         </table>
-
+        <p class="small">* Minimum period of purchase is on year.</p>
         <a href="http://sites.fastspring.com/klokantech/product/hosting" 
            class="btn-large mary-4" target="_blank">Buy now</a>
         <p>If you need prepaid please 
@@ -277,30 +277,49 @@ description: Lightning fast hosting for large images.
           view = image.getView();
 
           view.setZoom(4);
-          view.setCenter([3500, -3000]);
+          view.setCenter([3500, -3150]);
         });
 
+        var zoom = 4;
+        var center = [3500, -3150];
+        var lastSchroll = 0;
         document.addEventListener('scroll', function() {
           var doc = document.documentElement;
           var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
           var navbarTop = document.getElementById('navbar-top');
-          //nav
+          //display nav
           if (toTop < window.innerHeight - 72) {
             navbarTop.className = 'hidden';
           } else {
             navbarTop.className = '';
           }
-        }, true);
 
-        function runAnimation() {
-          //map animations
-          var pan = ol.animation.pan({
-            duration: 2000,
-            source: /** @type {ol.Coordinate} */ (view.getCenter())
-          });
-          image.beforeRender(pan);
-//      view.setZoom(2);
-          view.setCenter([3739.5, -5573]);
-        }
+          //zooming image
+          var scale = 0.1;
+          if(toTop < 900){
+            if (toTop > lastSchroll) {
+              //move up    
+              zoom = zoom + scale;
+              center[0] = center[0] + 20;
+              center[1] = center[1] + 20;
+            } else {
+              //move down
+              zoom = zoom - scale;
+              center[0] = center[0] - 20;
+              center[1] = center[1] - 20;
+            }
+            view.setZoom(zoom);
+            view.setCenter(center);
+            lastSchroll = toTop;
+          }
+        }, true);
+ 
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8073932-12', 'auto');
+  ga('send', 'pageview');
 
 </script>
