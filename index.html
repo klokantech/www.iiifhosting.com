@@ -271,12 +271,40 @@ description: Lightning fast hosting for large images.
 <script>
         document.getElementById('banner').style.height = (window.innerHeight - 72) + 'px';
 
-        var url = 'http://demo.iiifhosting.com/iiif/mona_lisa/info.json';
-        var IIIF = new IiifViewer('viewer', url, function() {
-          image = IIIF.getMap();
+        var metadata = {
+          "@context" : "http://iiif.io/api/image/2/context.json",
+          "@id" : "http://demo.iiifhosting.com/iiif/mona_lisa",
+          "protocol" : "http://iiif.io/api/image",
+          "width" : 7479,
+          "height" : 11146,
+          "tiles" : [
+             { "width" : 256, "height" : 256, "scaleFactors" : [ 1, 2, 4, 8, 16, 32, 64 ] }
+          ],
+          "profile" : [
+             "http://iiif.io/api/image/2/level1.json",
+             { "formats" : [ "jpg" ],
+               "qualities" : [ "native","color","gray" ],
+               "supports" : ["regionByPct","sizeByForcedWh","sizeByWh","sizeAboveFull","rotationBy90s","mirroring","gray"] }
+          ]
+        };
+        var IIIF = new IiifViewer('viewer', metadata, function() {
+          image = this.getMap();
           view = image.getView();
 
-          view.setZoom(4);
+          var extent = [0, -11146, -7479, 0];
+          thumb = new ol.layer.Image({
+            source: new ol.source.ImageStatic({
+              url: '{{site.baseurl}}img/mona_lisa.jpg',
+              projection: view.getProjection(),
+              imageExtent: extent
+            })
+          });
+          thumb.setZIndex(-1);
+          thumb.setVisible(true);
+          image.addLayer(thumb);
+          
+
+          view.setZoom(1);
           view.setCenter([3500, -3150]);
         });
 
@@ -298,7 +326,7 @@ description: Lightning fast hosting for large images.
           var scale = 0.1;
           if(toTop < 900){
             if (toTop > lastSchroll) {
-              //move up    
+              //move up
               zoom = zoom + scale;
               center[0] = center[0] + 20;
               center[1] = center[1] + 20;
