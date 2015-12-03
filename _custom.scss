@@ -85,6 +85,12 @@ body{
   }
 }
 
+@media(max-width: 620px){
+  #navbar-bottom .nav{
+    display: none;
+  }
+}
+
 .nav a{
   cursor: pointer;
 }
@@ -120,6 +126,40 @@ body{
     margin-bottom: 40px;
   }
 
+}
+
+@media(max-width: 900px){
+  #banner{ 
+    #banner-content{
+      left: 0; right: 0;
+      width: initial;
+      margin-left: 0;
+
+      h1{
+        font-size: 32px;
+      }
+      p{
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+#pricing table.screen-large{
+  display: inline-block;
+}
+#pricing table.screen-mobile{
+  display: none;
+}
+@media(max-width: 680px){
+  #pricing table.screen-large{
+    display: none;
+  }
+  #pricing table.screen-mobile{
+    display: block;
+    width: 250px;
+    margin: 10px auto;
+  }
 }
 
 .techbox{
