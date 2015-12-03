@@ -291,7 +291,7 @@ description: Lightning fast hosting for large images.
           image = this.getMap();
           view = image.getView();
 
-          var extent = [0, -11146, -7479, 0];
+          var extent = [0, -11146, 7479, 0];
           thumb = new ol.layer.Image({
             source: new ol.source.ImageStatic({
               url: '{{site.baseurl}}img/mona_lisa.jpg',
@@ -304,7 +304,7 @@ description: Lightning fast hosting for large images.
           image.addLayer(thumb);
           
 
-          view.setZoom(1);
+          view.setZoom(4);
           view.setCenter([3500, -3150]);
         });
 
