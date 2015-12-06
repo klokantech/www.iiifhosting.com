@@ -146,7 +146,7 @@ body{
 }
 
 #pricing table.screen-large{
-  display: inline-block;
+  display: table;
 }
 #pricing table.screen-mobile{
   display: none;
@@ -163,7 +163,7 @@ body{
 }
 
 .techbox{
-  height: 480px;
+  min-height: 480px;
 }
 
 .techbox-btn{
