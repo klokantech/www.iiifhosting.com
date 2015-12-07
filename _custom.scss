@@ -110,8 +110,6 @@ body{
 
   #banner-content{
     position: absolute;
-    -webkit-transform: translateZ(30px);
-    -moz-transform: translateZ(30px);
     z-index: 10;
     top: 50%;
     height: 300px;
@@ -120,21 +118,31 @@ body{
     left: 50%;
     width: 870px;
     margin-left: -435px;
+
+    h1{
+      text-shadow: 2px 1px 1px rgba(100, 100, 100, 1);
+      font-size: 44px;
+      margin-bottom: 40px;
+      -webkit-transform: translateZ(30px);
+      -moz-transform: translateZ(30px);
+    } 
+
+    p{
+      text-shadow: 1px 1px 1px rgba(100, 100, 100, 1);
+      font-size: 30px;
+      line-height: 1.2;
+      margin-bottom: 40px;
+      -webkit-transform: translateZ(30px);
+      -moz-transform: translateZ(30px);
+      transform: translateZ(30px);
+    }
+
+    .btn-large{
+      -webkit-transform: translateZ(60px);
+      -moz-transform: translateZ(60px);
+      transform: translateZ(60px);
+    }
   }
-
-  h1{
-    text-shadow: 2px 1px 1px rgba(100, 100, 100, 1);
-    font-size: 44px;
-    margin-bottom: 40px;
-  } 
-
-  p{
-    text-shadow: 1px 1px 1px rgba(100, 100, 100, 1);
-    font-size: 30px;
-    line-height: 1.2;
-    margin-bottom: 40px;
-  }
-
 }
 
 @media(max-width: 900px){
