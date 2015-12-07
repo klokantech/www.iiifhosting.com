@@ -30,13 +30,6 @@ body{
   padding-top: 0;
   z-index: 10;
 }
-#viewer{
-  position: fixed;
-  top: -100px; bottom: -100px;
-  left: -100px; right: -100px;
-  z-index: -1;
-  background-color: #a4bacf;
-}
 
 #navbar-top .nav a:hover{
   color: #4dc08d;
@@ -99,11 +92,27 @@ body{
   padding: 16px 16px 16px 0;
 }
 
+#paralax{
+  position: absolute;
+  top: -100px; bottom: -100px;
+  left: -100px; right: -100px;
+  z-index: -1;
+  background-color: #a4bacf;
+  -webkit-transform-style: preserve-3d; 
+  transform-style: preserve-3d;
+}
+
+#viewer{
+  z-index: 0;
+}
 #banner{
   height: 700px;
 
   #banner-content{
     position: absolute;
+    -webkit-transform: translateZ(30px);
+    -moz-transform: translateZ(30px);
+    z-index: 10;
     top: 50%;
     height: 300px;
     margin-top: -186px; /* height / 2 + navbar height / 2*/
@@ -114,7 +123,7 @@ body{
   }
 
   h1{
-    text-shadow: 1px 1px 1px rgba(100, 100, 100, 1);
+    text-shadow: 2px 1px 1px rgba(100, 100, 100, 1);
     font-size: 44px;
     margin-bottom: 40px;
   } 
