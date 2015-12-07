@@ -38,6 +38,7 @@ body{
 #navbar-bottom{
   height: 72px;
   background-color: rgba(255,255,255, 0.9);
+  z-index: 20;
 
   h1{
     float: left;
@@ -136,12 +137,16 @@ body{
       -moz-transform: translateZ(30px);
       transform: translateZ(30px);
     }
+  }
 
-    .btn-large{
-      -webkit-transform: translateZ(60px);
-      -moz-transform: translateZ(60px);
-      transform: translateZ(60px);
-    }
+  #btn-learnmore{
+    top: 50%;
+    margin-top: 80px;
+    -webkit-transform-style: preserve-3d; 
+    transform-style: preserve-3d;
+    -webkit-transform: translateZ(60px);
+    -moz-transform: translateZ(60px);
+    transform: translateZ(60px);
   }
 }
 
