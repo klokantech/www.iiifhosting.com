@@ -99,8 +99,8 @@ body{
 
 #paralax{
   position: absolute;
-  top: -100px; bottom: -100px;
-  left: -100px; right: -100px;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
   z-index: -1;
   background-color: #a4bacf;
   -webkit-transform-style: preserve-3d; 
@@ -110,8 +110,8 @@ body{
 #viewer{
   z-index: 0;
   position: absolute;
-  top: -100px; bottom: -100px;
-  left: -100px; right: -100px;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
 }
 #banner{
   height: 700px;
