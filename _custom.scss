@@ -44,7 +44,13 @@ body{
   background-color: rgba(255,255,255, 0.9);
   z-index: 20;
 
+  #nav-logo{
+    position: absolute;
+    margin-top: -65px;
+  }
+
   h1{
+    visibility: hidden;
     float: left;
     font-size: 36px;
     margin: 0;
@@ -95,6 +101,17 @@ body{
 
 #navbar-top .nav-mobile #nav-mobile-btn{
   padding: 16px 16px 16px 0;
+}
+
+#navbar-top{
+  #nav-logo{
+    position: absolute;
+    /*margin-top: -65px;*/
+  }
+
+  h1{
+    visibility: hidden;
+  }
 }
 
 #paralax{
