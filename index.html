@@ -397,15 +397,15 @@ description: Lightning fast hosting for large images.
                 var center = { x: w/2, y: h/2 };
                 var evX = (moveEvent == 'touchmove') ? ev.originalEvent.touches[0].clientX : ev.clientX;
                 var evY = (moveEvent == 'touchmove') ? ev.originalEvent.touches[0].clientY : ev.clientY;
-                var shadowX = (center.x - evX) / 20;
-                var shadowY = (center.y - evY) / 20;
+                var shadowX = (center.x - evX) / 40;
+                var shadowY = (center.y - evY) / 40;
 
                 shadowX = (shadowX > shadowLimit) ? shadowLimit : shadowX;
                 shadowX = (shadowX < shadowLimit*-1) ? shadowLimit*-1 : shadowX;
                 shadowY = (shadowY > shadowLimit) ? shadowLimit : shadowY;
                 shadowY = (shadowY < shadowLimit*-1) ? shadowLimit*-1 : shadowY;
 
-                $shadow.css({ textShadow: Math.ceil(shadowX) + 'px '+ Math.ceil(shadowY) +'px '+ Math.abs(shadowX*shadowY)/100 +'px rgba(0,0,0,0.4)' });
+                $shadow.css({ textShadow: Math.ceil(shadowX) + 'px '+ Math.ceil(shadowY) +'px '+ Math.abs(shadowX*shadowY)/30 +'px rgba(0,0,0,0.4)' });
              });
             })();
           }); 
