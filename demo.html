@@ -1,0 +1,161 @@
+---
+title: Demo
+keywords:  Demo
+description:
+---
+
+<style>
+  .container{height: 600px;}
+  #uploader {position:absolute; z-index: 100;}
+  #veil {position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(128,128,128,0.8);color:#000;text-align:center;z-index: 200;}
+
+  .du-wrap {display:inline-block;width:500px;background:#fff;border-radius:5px;margin:10px;}
+  .du-dropzone {border: #ddd 4px dashed;border-radius: 2px;padding:25px;text-align:center;font-size:28px;color:#bbb;color: #ccc;}
+  .du-divider {font-size:13px;padding-top: 8px; color: #ccc; font-weight: bold;margin-bottom: -12px;}
+  .du-divider::after {content:', if you prefer...';}
+  .du-choosebtn{
+    box-shadow: none;
+    background-color: #4d90fe;
+    background-image: -webkit-linear-gradient(top,#4d90fe,#4787ed);
+    background-image: -moz-linear-gradient(top,#4d90fe,#4787ed);
+    background-image: -ms-linear-gradient(top,#4d90fe,#4787ed);
+    background-image: -o-linear-gradient(top,#4d90fe,#4787ed);
+    background-image: linear-gradient(top,#4d90fe,#4787ed);
+    border: 1px solid #3079ed;
+    color: #fff;
+    border-radius: 2px;
+    cursor: default;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    margin-right: 16px;
+    height: 29px;
+    line-height: 27px;
+    min-width: 54px;
+    outline: 0;
+    padding: 0 8px;
+    cursor: pointer;
+  }
+  .du-choosebtn:hover, .du-choosebtn:active, .du-choosebtn:focus{
+    box-shadow: none;
+    background-color: #357ae8;
+    background-image: -webkit-linear-gradient(top,#4d90fe,#357ae8);
+    background-image: -moz-linear-gradient(top,#4d90fe,#357ae8);
+    background-image: -ms-linear-gradient(top,#4d90fe,#357ae8);
+    background-image: -o-linear-gradient(top,#4d90fe,#357ae8);
+    background-image: linear-gradient(top,#4d90fe,#357ae8);
+    border: 1px solid #2f5bb7;
+  }
+  .du-file {display:none !important; height: 0;}
+  .du-progressbar {height:16px;width:0%;background:green;border-radius:5px;transition:width .4s;color:white;font-size:12px;text-align:right;padding-right:3px;max-width:100%;}
+</style>
+<div class="container">
+  <div class="row padt-4">
+    <div class="col12 center">
+      <h1>Demo</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col12">
+      <div id="uploader">
+        <input type="file" name="upload" class="driveuploader-replace" style="display:none;" />
+        <div id="veil" style="display:none;">
+          Please, enter your name and email to continue:
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" placeholder="Your name">
+          <label for="email">E-mail</label>
+          <input type="text" name="email" id="email" placeholder="Your email">
+          <input type="button" id="nextbtn" value="Continue" class="btn">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script>
+
+  var du_instance;
+  var task_id;
+
+  var uploader = document.getElementById('uploader');
+
+  function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
+  function onbeforeupload(done) {
+    var veil = document.getElementById('veil');
+    veil.style.display = 'block';
+
+    var nextbtn = document.getElementById('nextbtn');
+    nextbtn.onclick = function (e) {
+      var name = document.getElementById('name').value,
+              email = document.getElementById('email').value;
+
+      if (name.length < 2 || !validateEmail(email)) {
+        alert('Please enter your name and valid email!');
+        return;
+      }
+
+      veil.style.display = 'none';
+      task_id = Math.floor(Math.random() * 2147483648).toString(36) +
+              Math.abs(Math.floor(Math.random() * 2147483648) ^ (+new Date())).toString(36);
+      du_instance.setCustomMetadata('task_id', task_id);
+      du_instance.setCustomMetadata('name', name);
+      du_instance.setCustomMetadata('email', email);
+
+      ga('send', 'event', 'Try', 'metadata_filled');
+      done();
+    };
+  }
+
+  var statusPollId;
+
+  function status_cb(data) {
+    ga('send', 'event', 'Try', 'status_' + data.status, undefined, data.jobs_on_server);
+    switch (data.status) {
+      default:
+        var status = 'Waiting (' + data.status + ')...';
+        if (data.jobs_on_server) {
+          status += '<br />' + data.jobs_on_server + ' jobs on the server';
+        }
+        uploader.innerHTML = status;
+        break;
+      case 'done':
+        uploader.innerHTML = 'Done<br />' +
+                '<a href="' + data.url + '">' + data.url + '</a>';
+        clearInterval(statusPollId);
+        break;
+    }
+  }
+
+  function du_cb(status, result, du) {
+    if (status == 'init') {
+      ga('send', 'event', 'Try', 'upload_init');
+      du_instance = du;
+      du_instance.setHook('beforeupload', onbeforeupload);
+    } else if (status == 'started') {
+      ga('send', 'event', 'Try', 'upload_started');
+    } else if (status == 'done') {
+      ga('send', 'event', 'Try', 'upload_done');
+      var statusUrl = 'http://test.iiifhosting.com/tasks/' + task_id + '/?callback=status_cb';
+      statusPollId = setInterval(function () {
+        var old = document.querySelector('script[src="' + statusUrl + '"]');
+        if (old && old.parentNode) {
+          old.parentNode.removeChild(old);
+        }
+
+        var script = document.createElement('script');
+        script.src = statusUrl;
+
+        document.getElementsByTagName('head')[0].appendChild(script);
+      }, 1000);
+      uploader.innerHTML = 'Waiting...';
+    } else if (status == 'error') {
+      alert('Error uploading the files!');
+    }
+  }
+</script>
+<script src="http://driveuploader.com/upload/1OJG3V4NZ8/embed.js?callback=du_cb&nostyle=true"></script>
