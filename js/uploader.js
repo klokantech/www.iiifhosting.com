@@ -47,7 +47,7 @@ function status_cb(data) {
       uploader.innerHTML = status;
       break;
     case 'done':
-      uploader.innerHTML = 'Try the zoomable viewer at<br />' +
+      uploader.innerHTML = 'Open the zoomable viewer at<br />' +
               '<a href="' + data.url + '">' + data.url + '</a>';
       clearInterval(statusPollId);
       break;
