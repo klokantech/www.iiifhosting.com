@@ -44,16 +44,16 @@ function status_cb(data) {
       if (data.jobs_on_server) {
         status += '<br />' + data.jobs_on_server + ' jobs on the server';
       }
-      uploader.innerHTML = status;
+      uploader.innerHTML = '<div class="du-info">' + status + '</div>';
       break;
     case 'done':
-      uploader.innerHTML = 'Open the zoomable viewer at<br />' +
-              '<a href="' + data.url + '">' + data.url + '</a>';
+      uploader.innerHTML = '<div class="du-info">Open the zoomable viewer at<br />' +
+              '<a href="' + data.url + '">' + data.url + '</a></div>';
       clearInterval(statusPollId);
       break;
     case 'failed':
-      uploader.innerHTML = 'Something went wrong when converting the file.<br />' +
-              'Please, make sure you are uploading a valid file and try again.';
+      uploader.innerHTML = '<div class="du-info">Something went wrong when converting the file.<br />' +
+              'Please, make sure you are uploading a valid file and try again.</div>';
       clearInterval(statusPollId);
       break;
   }
@@ -83,7 +83,7 @@ function du_cb(status, result, du) {
 
       document.getElementsByTagName('head')[0].appendChild(script);
     }, 1000);
-    uploader.innerHTML = 'Waiting...';
+    uploader.innerHTML = '<div class="du-info">Waiting...</div>';
   } else if (status == 'error') {
     alert('Error uploading the files!');
   }

@@ -277,14 +277,19 @@ h2 img{
   font-family: Roboto, sans-serif;
   color: #000;
   font-size: 13px;
+  display: table;
 }
 .du-wrap {
-  position: absolute;
-  top: 0; right: 0;
-  bottom: 0; left: 0;
-  background:#fff;
-  border-radius:5px;
-  margin:10px;
+  /*position: absolute;*/
+  /*  top: 0; right: 0;
+    bottom: 0; left: 0;*/
+  background: #fff;
+  border-radius: 5px;
+  margin: 10px;
+  text-align: center;
+  display: table;
+  width: 100%;
+  min-height: 240px;
 }
 .du-dropzone {
   display: table;
@@ -298,6 +303,7 @@ h2 img{
   font-family: Roboto, sans-serif;
   font-size:26px;
   color: #ccc;
+  min-height: 240px;
 }
 .du-dropzone.dragging{
   border: #4d90fe 4px dashed;
@@ -361,6 +367,11 @@ h2 img{
   text-align:right;
   padding-right:3px;
   max-width:100%;
+}
+.du-info{
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
 }
 
 
