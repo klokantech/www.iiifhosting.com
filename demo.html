@@ -99,12 +99,15 @@ description:
       ga('send', 'event', 'Try', 'upload_started');
     } else if (status == 'done') {
       ga('send', 'event', 'Try', 'upload_done');
-      var statusUrl = 'http://test.iiifhosting.com/tasks/' + task_id + '/?callback=status_cb';
+      var baseStatusUrl = 'http://test.iiifhosting.com/tasks/' + task_id + '/?callback=status_cb';
+      var statusUrl = baseStatusUrl;
       statusPollId = setInterval(function () {
         var old = document.querySelector('script[src="' + statusUrl + '"]');
         if (old && old.parentNode) {
           old.parentNode.removeChild(old);
         }
+
+        statusUrl = baseStatusUrl + '&random=' + Math.random();
 
         var script = document.createElement('script');
         script.src = statusUrl;
