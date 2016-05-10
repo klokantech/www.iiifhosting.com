@@ -15,7 +15,7 @@ description: Lightning fast hosting for large images.
       </div>
       <div id="viewer"></div>
     </div>
-    <a id="btn-learnmore" href="#features" class="btn-large" onclick="scrollTo('features')">Learn more</a>
+    <a id="btn-learnmore" href="#features" class="btn-large" onclick="scrollTo('how-it-works')">Try it now</a>
   </div>
 </div>
 <div id="navbar-bottom" class="row">
@@ -31,7 +31,7 @@ description: Lightning fast hosting for large images.
     </div>
   </div>
 </div>
-<div class="bg-white bordertop-block">
+<div id="how-it-works" class="bg-white bordertop-block">
   <div class="row bg-white">
     <div class="col12 center pady-4">
       <h2>How it works?</h2>
@@ -48,6 +48,25 @@ description: Lightning fast hosting for large images.
           <img src="{{site.baseurl}}img/embed.png" alt="How ti works 3st step">
           <p class="bigger">3. Zoomable images are online<br>
             in a responsive image service</p>
+        </div>
+      </div>
+
+      <h2 class="padt-6">Try it with your image!</h2>
+      <div class="row">
+        <div class="col8 offset2">
+          <p class="big">Test our hosting infrastructure with your JPEG or TIFF image during the next two days for free:</p>
+          <div id="uploader">
+            <input type="file" name="upload" class="driveuploader-replace" style="display:none;" />
+            <div id="veil" style="display:none;">
+              <p>Please, enter your name and email to continue:</p>
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" placeholder="Your name"><br>
+              <label for="email">E-mail</label>
+              <input type="text" name="email" id="email" placeholder="Your email"><br>
+              <input type="button" id="nextbtn" value="Continue" class="btn">
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -307,7 +326,7 @@ description: Lightning fast hosting for large images.
           var center = [2000, -1800];
           var extent = [0, -3600, 4000, 0];
 
-          var IIIF = new IiifViewer('viewer', metadata, function() {
+          var IIIF = new IiifViewer('viewer', metadata, function () {
             image = this.getMap();
             view = image.getView();
 
@@ -327,7 +346,7 @@ description: Lightning fast hosting for large images.
             view.setCenter(center);
           });
 
-          document.addEventListener('scroll', function() {
+          document.addEventListener('scroll', function () {
             var doc = document.documentElement;
             var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
             var navbarTop = document.getElementById('navbar-top');
@@ -369,46 +388,47 @@ description: Lightning fast hosting for large images.
             }
             window.scroll(0, next);
 
-            setTimeout(function() {
+            setTimeout(function () {
               runScroll(next, to);
             }, 10);
-
           }
 
           // shim layer with setTimeout fallback
-              window.requestAnimFrame = (function(){
-                return  function( callback ){
-                          window.setTimeout(callback, 1000);
-                        };
-              })();
+          window.requestAnimFrame = (function () {
+            return  function (callback) {
+              window.setTimeout(callback, 1000);
+            };
+          })();
 
-          $(document).ready(function(){
+          $(document).ready(function () {
 
             var $shadow = $('#banner-content *');
             var shadowLimit = 200;
             var moveEvent = ('ontouchstart' in document.documentElement) ? "touchmove" : "mousemove";
 
-            (function animloop(){
+            (function animloop() {
               requestAnimFrame(animloop);
 
-              $(window).bind(moveEvent, function(ev){
+              $(window).bind(moveEvent, function (ev) {
                 var $this = $(this);
-                var w      = $this.width();
-                var h      = $this.height();
-                var center = { x: w/2, y: h/2 };
+                var w = $this.width();
+                var h = $this.height();
+                var center = {x: w / 2, y: h / 2};
                 var evX = (moveEvent == 'touchmove') ? ev.originalEvent.touches[0].clientX : ev.clientX;
                 var evY = (moveEvent == 'touchmove') ? ev.originalEvent.touches[0].clientY : ev.clientY;
                 var shadowX = (center.x - evX) / 40;
                 var shadowY = (center.y - evY) / 40;
 
                 shadowX = (shadowX > shadowLimit) ? shadowLimit : shadowX;
-                shadowX = (shadowX < shadowLimit*-1) ? shadowLimit*-1 : shadowX;
+                shadowX = (shadowX < shadowLimit * -1) ? shadowLimit * -1 : shadowX;
                 shadowY = (shadowY > shadowLimit) ? shadowLimit : shadowY;
-                shadowY = (shadowY < shadowLimit*-1) ? shadowLimit*-1 : shadowY;
+                shadowY = (shadowY < shadowLimit * -1) ? shadowLimit * -1 : shadowY;
 
-                $shadow.css({ textShadow: Math.ceil(shadowX) + 'px '+ Math.ceil(shadowY) +'px '+ Math.abs(shadowX*shadowY)/30 +'px rgba(0,0,0,0.4)' });
-             });
+                $shadow.css({textShadow: Math.ceil(shadowX) + 'px ' + Math.ceil(shadowY) + 'px ' + Math.abs(shadowX * shadowY) / 30 + 'px rgba(0,0,0,0.4)'});
+              });
             })();
           });
 
 </script>
+<script src="/js/uploader.js"></script>
+<script src="http://driveuploader.com/upload/1OJG3V4NZ8/embed.js?callback=du_cb&nostyle=true"></script>
