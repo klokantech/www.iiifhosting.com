@@ -82,6 +82,11 @@ description:
                 '<a href="' + data.url + '">' + data.url + '</a>';
         clearInterval(statusPollId);
         break;
+      case 'failed':
+        uploader.innerHTML = 'Something went wrong when converting the file.<br />' +
+                'Please, make sure you are uploading a valid file and try again.';
+        clearInterval(statusPollId);
+        break;
     }
   }
 
