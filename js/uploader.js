@@ -35,19 +35,31 @@ function onbeforeupload(done) {
 }
 
 var statusPollId;
+var statusConvertingStart = Infinity;
 
 function status_cb(data) {
   ga('send', 'event', 'Try', 'status_' + data.status, undefined, data.jobs_on_server);
   switch (data.status) {
+    case 'converting':
+      if (statusConvertingStart == Infinity) {
+        statusConvertingStart = +new Date;
+      }
     default:
       var status = 'Waiting (' + data.status + ')...';
       if (data.jobs_on_server) {
         status += '<br />' + data.jobs_on_server + ' jobs on the server';
       }
+      if ((+new Date) - statusConvertingStart > 45 * 1000) {
+        status += '<br />The server is busy at the moment.<br />We will send you an email when the conversion is done.';
+
+        //var script = document.createElement('script');
+        //script.src = '';
+        //document.getElementsByTagName('head')[0].appendChild(script);
+      }
       uploader.innerHTML = '<div class="du-info">' + status + '</div>';
       break;
     case 'done':
-      uploader.innerHTML = '<div class="du-info">Open the zoomable viewer at<br />' +
+      uploader.innerHTML = '<div class="du-info"><h2>Success!</h2>Open the zoomable viewer at<br />' +
               '<a href="' + data.url + '">' + data.url + '</a></div>';
       clearInterval(statusPollId);
       break;
