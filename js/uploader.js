@@ -36,6 +36,7 @@ function onbeforeupload(done) {
 
 var statusPollId;
 var statusConvertingStart = Infinity;
+var statusReported = false;
 
 function status_cb(data) {
   ga('send', 'event', 'Try', 'status_' + data.status, undefined, data.jobs_on_server);
@@ -52,9 +53,12 @@ function status_cb(data) {
       if ((+new Date) - statusConvertingStart > 45 * 1000) {
         status += '<br />The server is busy at the moment.<br />We will send you an email when the conversion is done.';
 
-        //var script = document.createElement('script');
-        //script.src = '';
-        //document.getElementsByTagName('head')[0].appendChild(script);
+        if (!statusReported) {
+          var script = document.createElement('script');
+          script.src = 'http://bart.klokantech.com/rEcEdAINEten';
+          document.getElementsByTagName('head')[0].appendChild(script);
+          statusReported = true;
+        }
       }
       uploader.innerHTML = '<div class="du-info">' + status + '</div>';
       break;
