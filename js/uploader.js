@@ -22,43 +22,15 @@ function onbeforeupload(done) {
       return;
     }
 
-    nextbtn.disabled = "disabled";
+    veil.style.display = 'none';
+    task_id = Math.floor(Math.random() * 2147483648).toString(36) +
+            Math.abs(Math.floor(Math.random() * 2147483648) ^ (+new Date())).toString(36);
+    du_instance.setCustomMetadata('task_id', task_id);
+    du_instance.setCustomMetadata('name', name);
+    du_instance.setCustomMetadata('email', email);
 
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        var goon = true;
-        if (xhr.status === 200) {
-          var data = xhr.response;
-          if (data && data.found) {
-            if (data.redirect) {
-              goon = false;
-              window.location = data.redirect;
-            } else if (data.status == 'exceeded') {
-              goon = false;
-              alert('Account quota exceeded!');
-            }
-          }
-        }
-        if (goon) {
-          veil.style.display = 'none';
-          task_id = Math.floor(Math.random() * 2147483648).toString(36) +
-                  Math.abs(Math.floor(Math.random() * 2147483648) ^ (+new Date())).toString(36);
-          du_instance.setCustomMetadata('task_id', task_id);
-          du_instance.setCustomMetadata('name', name);
-          du_instance.setCustomMetadata('email', email);
-      
-          ga('send', 'event', 'Try', 'metadata_filled');
-          done();
-        }
-      }
-    };
-    xhr.open('POST', 'http://test.iiifhosting.com/check_email/');
-    xhr.responseType = 'json';
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send(JSON.stringify({
-      'email': email
-    }));
+    ga('send', 'event', 'Try', 'metadata_filled');
+    done();
   };
 }
 
