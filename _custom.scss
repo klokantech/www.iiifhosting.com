@@ -236,3 +236,52 @@ h2 img{
 .btn, .btn-small, .btn-stroke, .btn-stroke-gray{
   line-height: 1.3;
 }
+
+/* Drive uploader */
+#veil {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(245,245,245);
+  color: #6f6f6f;
+  text-align: center;
+  z-index: 80;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#veil p{
+  margin-top: 24px;
+}
+
+#veil label{
+  display: none;
+}
+
+#veil input[type=text]{
+  display: inline-block;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #6f6f6f;
+  padding: 8px 0;
+  margin-bottom: 16px;
+
+}
+
+#veil input[type=text]:active, #veil input[type=text]:focus{
+  border-bottom: 2px solid #3079ed;
+  margin-bottom: 15px;
+}
+
+#uploader{
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  z-index: 50;
+  font-family: Roboto, sans-serif;
+  color: #000;
+  font-size: 13px;
+  display: table;
+}
