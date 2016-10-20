@@ -1,0 +1,248 @@
+---
+title: Upload from Google Drive
+keywords:
+description:
+---
+
+<style>
+  @-webkit-keyframes rotanim {
+    0% {-webkit-transform:rotate(0deg);transform:rotate(0deg);}
+    100% {-webkit-transform:rotate(360deg);transform:rotate(360deg);}
+  }
+  @keyframes rotanim {
+    0% {-webkit-transform:rotate(0deg);transform:rotate(0deg);}
+    100% {-webkit-transform:rotate(360deg);transform: rotate(360deg);}
+  }
+  #authorize, body.authorize #status {
+    display:none;
+  }
+  body.authorize #authorize {
+    display:block;
+  }
+  #status, #authorize {
+    padding:110px 0 90px 0;
+    position:relative;
+  }
+  #status:not(.done) {
+    padding:200px 0 0 0;
+  }
+  #status:not(.done):before {
+    content:'';
+    display:block;
+    width:100px;
+    height:100px;
+    border:1px solid #333;
+    position:absolute;
+    bottom:50px;
+    left:calc(50% - 50px);
+    border-radius:50px;
+    border-width:0 0 0 2px;
+    -webkit-animation: rotanim 1s infinite ease;
+    animation: rotanim 1s infinite ease;
+  }
+</style>
+
+<div class="container">
+  <div class="row padt-10">
+    <div class="col12 center">
+      <div id="authorize">
+        <button id="authorize-button" onclick="handleAuthClick(event)" class="btn">
+          Add IIIFHosting to Google Drive
+        </button>
+      </div>
+      <div id="status">Loading...</div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var CLIENT_ID = '946611837451-9vbq6cq4nblekmi0442qhvphuccrlefg.apps.googleusercontent.com';
+
+  var SCOPES = ['https://www.googleapis.com/auth/drive.install',
+                'https://www.googleapis.com/auth/drive.file'];
+
+  var BASE_URL = 'https://admin.iiifhosting.com';
+
+  function checkAuth() {
+    gapi.auth.authorize({
+      'client_id': CLIENT_ID,
+      'scope': SCOPES.join(' '),
+      'immediate': true
+    }, handleAuthResult);
+  }
+
+  function handleAuthResult(authResult) {
+    if (authResult && !authResult.error) {
+      document.body.className = '';
+      gapi.client.load('drive', 'v3', doTheAction);
+    } else {
+      document.body.className = 'authorize';
+    }
+  }
+
+  function handleAuthClick(event) {
+    gapi.auth.authorize({
+      client_id: CLIENT_ID,
+      scope: SCOPES,
+      immediate: false
+    }, handleAuthResult);
+    return false;
+  }
+
+  var deletePermissionsRequest;
+  var statusPollId;
+
+  function status_cb(data) {
+    setStatus(data.status);
+    if (data.status == 'done') {
+      clearInterval(statusPollId);
+      setStatus('Done! Revoking permissions');
+
+      deletePermissionsRequest.execute(function(resp) {
+        setStatus('Done! Redirecting');
+        window.location = data.url;
+      });
+    } else if (data.status == 'failed') {
+      clearInterval(statusPollId);
+      setStatus('FAILED!', true);
+
+      deletePermissionsRequest.execute(function(resp) {});
+    }
+  }
+
+  function doTheAction() {
+    var qd = {};
+    location.search.substr(1).split("&").forEach(function(item) {
+        var s = item.split("="),
+      k = s[0],
+      v = s[1] && decodeURIComponent(s[1]);
+        (qd[k] = qd[k] || []).push(v)
+    });
+
+    if (!qd['state']) {
+      setStatus('Authorized! You can no go to your <a href="https://drive.google.com/">Google Drive</a> and open a file with this app.', true);
+      return;
+    }
+
+    var state = JSON.parse(qd['state']);
+
+    if (!state || state['action'] != 'open') {
+      return;
+    }
+
+    var request = gapi.client.drive.about.get({
+      'fields': 'user(displayName,emailAddress)'
+    });
+
+    setStatus('Checking user');
+
+    request.execute(function(resp) {
+      var userName = resp.user.displayName;
+      var userEmail = resp.user.emailAddress;
+      var fileId = state['ids'][0];
+      var taskId = Math.floor(Math.random() * 2147483648).toString(36) +
+          Math.abs(Math.floor(Math.random() * 2147483648) ^ (+new Date())).toString(36);
+
+      request = gapi.client.drive.files.get({
+        'fileId': fileId,
+        'fields': 'headRevisionId,name,size'
+      });
+
+      setStatus('Checking file');
+      request.execute(function(resp) {
+
+        var fileName = resp.name;
+        var fileSize = resp.size;
+        var revisionId = resp.headRevisionId;
+
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener('load', function() {
+          var response = oReq.response;
+          if (response.url) {
+            window.location = response.url;
+            return;
+          } else if (response.status == 'exceeded') {
+            setStatus('Storage quota exceeded! Go to <a href="/storage/">storage settings</a> to upgrade your plan.', true);
+            return;
+          }
+
+          request = gapi.client.drive.permissions.create({
+            'fileId': fileId,
+            'role': 'reader',
+            'type': 'user',
+            'sendNotificationEmail': false,
+            'emailAddress': 'iiifhosting@gmail.com'
+          });
+
+          setStatus('Creating permissions');
+
+          request.execute(function(resp) {
+            deletePermissionsRequest = gapi.client.drive.permissions.delete({
+              'fileId': fileId,
+              'permissionId': resp['id']
+            });
+
+            var body = {
+              'files': [{
+                'id': fileId,
+                'revisionId': revisionId,
+                'name': fileName
+              }],
+              'metadata': {
+                'name': userName,
+                'email': userEmail,
+                'task_id': taskId
+              }
+            };
+
+            oReq = new XMLHttpRequest();
+            oReq.addEventListener('load', function() {
+              var baseStatusUrl = BASE_URL + '/tasks/' + taskId + '/?callback=status_cb';
+              var statusUrl = baseStatusUrl;
+              statusPollId = setInterval(function () {
+                var old = document.querySelector('script[src="' + statusUrl + '"]');
+                if (old && old.parentNode) {
+                  old.parentNode.removeChild(old);
+                }
+
+                statusUrl = baseStatusUrl + '&random=' + Math.random();
+
+                var script = document.createElement('script');
+                script.src = statusUrl;
+
+                document.getElementsByTagName('head')[0].appendChild(script);
+              }, 500);
+            });
+            oReq.open('POST', BASE_URL + '/tasks/');
+            oReq.setRequestHeader('Content-Type', 'application/json');
+            oReq.send(JSON.stringify(body));
+
+            setStatus('Adding to queue');
+          });
+        });
+        oReq.open('POST', BASE_URL + '/check_quota/');
+        oReq.setRequestHeader('Content-Type', 'application/json');
+        oReq.responseType = 'json';
+        oReq.send(JSON.stringify({
+          email: userEmail,
+          fileId: fileId,
+          revisionId: revisionId,
+          fileSize: fileSize
+        }));
+
+        setStatus('Adding to queue');
+      });
+    });
+  }
+
+  function setStatus(status, end) {
+    var el = document.getElementById('status');
+    if (end) {
+      el.className = 'done';
+    } else {
+      status += '...';
+    }
+    el.innerHTML = status;
+  }
+</script>
+<script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
