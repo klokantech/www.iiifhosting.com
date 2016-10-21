@@ -8,7 +8,12 @@ function validateEmail(email) {
   return re.test(email);
 }
 
-function onbeforeupload(done) {
+function onbeforeupload(done, files) {
+  if (files[0].size > 100*1024*1024) {
+    alert('The selected file is too large! Try using a file with size under 100 MB.')
+    return;
+  }
+  
   var veil = document.getElementById('veil');
   veil.style.display = 'block';
 
