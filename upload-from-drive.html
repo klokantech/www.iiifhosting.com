@@ -162,7 +162,7 @@ description:
             window.location = response.url;
             return;
           } else if (response.status == 'exceeded') {
-            setStatus('Storage quota exceeded! Go to <a href="/storage/">storage settings</a> to upgrade your plan.', true);
+            setStatus('Storage quota exceeded! Go to <a href="' + BASE_URL + '/storage/">storage settings</a> to upgrade your plan.', true);
             return;
           }
 
