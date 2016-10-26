@@ -214,14 +214,12 @@ description:
               }, 500);
             });
             oReq.open('POST', BASE_URL + '/tasks/');
-            oReq.setRequestHeader('Content-Type', 'application/json');
             oReq.send(JSON.stringify(body));
 
             setStatus('Adding to queue');
           });
         });
         oReq.open('POST', BASE_URL + '/check_quota/');
-        oReq.setRequestHeader('Content-Type', 'application/json');
         oReq.responseType = 'json';
         oReq.send(JSON.stringify({
           email: userEmail,
