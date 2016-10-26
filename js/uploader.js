@@ -1,3 +1,5 @@
+var BASE_URL = 'https://admin.iiifhosting.com';
+
 var du_instance;
 var task_id;
 
@@ -13,12 +15,12 @@ function onbeforeupload(done, files) {
     alert('The selected file is too large! Try using a file with size under 100 MB.')
     return;
   }
-  
+
   var veil = document.getElementById('veil');
   veil.style.display = 'block';
 
   var nextbtn = document.getElementById('nextbtn');
-  nextbtn.onclick = function (e) {
+  nextbtn.onclick = function(e) {
     var name = document.getElementById('name').value,
             email = document.getElementById('email').value;
 
@@ -27,15 +29,42 @@ function onbeforeupload(done, files) {
       return;
     }
 
-    veil.style.display = 'none';
-    task_id = Math.floor(Math.random() * 2147483648).toString(36) +
-            Math.abs(Math.floor(Math.random() * 2147483648) ^ (+new Date())).toString(36);
-    du_instance.setCustomMetadata('task_id', task_id);
-    du_instance.setCustomMetadata('name', name);
-    du_instance.setCustomMetadata('email', email);
+    nextbtn.disabled = 'disabled';
 
-    ga('send', 'event', 'Try', 'metadata_filled');
-    done();
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        var goon = true;
+        if (xhr.status === 200) {
+          var data = xhr.response;
+          if (data && data.found) {
+            if (data.redirect) {
+              goon = false;
+              window.location = data.redirect;
+            } else if (data.status == 'exceeded') {
+              goon = false;
+              alert('Account quota exceeded!');
+            }
+          }
+        }
+        if (goon) {
+          veil.style.display = 'none';
+          task_id = Math.floor(Math.random() * 2147483648).toString(36) +
+                  Math.abs(Math.floor(Math.random() * 2147483648) ^ (+new Date())).toString(36);
+          du_instance.setCustomMetadata('task_id', task_id);
+          du_instance.setCustomMetadata('name', name);
+          du_instance.setCustomMetadata('email', email);
+
+          ga('send', 'event', 'Try', 'metadata_filled');
+          done();
+        }
+      }
+    };
+    xhr.open('POST', BASE_URL + '/check_email/');
+    xhr.responseType = 'json';
+    xhr.send(JSON.stringify({
+      'email': email
+    }));
   };
 }
 
@@ -89,9 +118,9 @@ function du_cb(status, result, du) {
     ga('send', 'event', 'Try', 'upload_started');
   } else if (status == 'done') {
     ga('send', 'event', 'Try', 'upload_done');
-    var baseStatusUrl = 'http://test.iiifhosting.com/tasks/' + task_id + '/?callback=status_cb';
+    var baseStatusUrl = BASE_URL + '/tasks/' + task_id + '/?callback=status_cb';
     var statusUrl = baseStatusUrl;
-    statusPollId = setInterval(function () {
+    statusPollId = setInterval(function() {
       var old = document.querySelector('script[src="' + statusUrl + '"]');
       if (old && old.parentNode) {
         old.parentNode.removeChild(old);
