@@ -155,79 +155,59 @@ description:
         var fileSize = resp.size;
         var revisionId = resp.headRevisionId;
 
-        var oReq = new XMLHttpRequest();
-        oReq.addEventListener('load', function() {
-          var response = oReq.response;
-          if (response.url) {
-            window.location = response.url;
-            return;
-          } else if (response.status == 'exceeded') {
-            setStatus('Storage quota exceeded! Go to <a href="' + BASE_URL + '/storage/">storage settings</a> to upgrade your plan.', true);
-            return;
-          }
-
-          request = gapi.client.drive.permissions.create({
-            'fileId': fileId,
-            'role': 'reader',
-            'type': 'user',
-            'sendNotificationEmail': false,
-            'emailAddress': 'products@klokantech.com'
-          });
-
-          setStatus('Creating permissions');
-
-          request.execute(function(resp) {
-            deletePermissionsRequest = gapi.client.drive.permissions.delete({
-              'fileId': fileId,
-              'permissionId': resp['id']
-            });
-
-            var body = {
-              'files': [{
-                'id': fileId,
-                'revisionId': revisionId,
-                'name': fileName,
-                'size': fileSize
-              }],
-              'metadata': {
-                'name': userName,
-                'email': userEmail,
-                'task_id': taskId
-              }
-            };
-
-            oReq = new XMLHttpRequest();
-            oReq.addEventListener('load', function() {
-              var baseStatusUrl = BASE_URL + '/tasks/' + taskId + '/?callback=status_cb';
-              var statusUrl = baseStatusUrl;
-              statusPollId = setInterval(function () {
-                var old = document.querySelector('script[src="' + statusUrl + '"]');
-                if (old && old.parentNode) {
-                  old.parentNode.removeChild(old);
-                }
-
-                statusUrl = baseStatusUrl + '&random=' + Math.random();
-
-                var script = document.createElement('script');
-                script.src = statusUrl;
-
-                document.getElementsByTagName('head')[0].appendChild(script);
-              }, 500);
-            });
-            oReq.open('POST', BASE_URL + '/tasks/');
-            oReq.send(JSON.stringify(body));
-
-            setStatus('Adding to queue');
-          });
+        request = gapi.client.drive.permissions.create({
+          'fileId': fileId,
+          'role': 'reader',
+          'type': 'user',
+          'sendNotificationEmail': false,
+          'emailAddress': 'products@klokantech.com'
         });
-        oReq.open('POST', BASE_URL + '/check_quota/');
-        oReq.responseType = 'json';
-        oReq.send(JSON.stringify({
-          email: userEmail,
-          fileId: fileId,
-          revisionId: revisionId,
-          fileSize: fileSize
-        }));
+
+        setStatus('Creating permissions');
+
+        request.execute(function(resp) {
+          deletePermissionsRequest = gapi.client.drive.permissions.delete({
+            'fileId': fileId,
+            'permissionId': resp['id']
+          });
+
+          var body = {
+            'files': [{
+              'id': fileId,
+              'revisionId': revisionId,
+              'name': fileName,
+              'size': fileSize
+            }],
+            'metadata': {
+              'name': userName,
+              'email': userEmail,
+              'task_id': taskId
+            }
+          };
+
+          var oReq = new XMLHttpRequest();
+          oReq.addEventListener('load', function() {
+            var baseStatusUrl = BASE_URL + '/tasks/' + taskId + '/?callback=status_cb';
+            var statusUrl = baseStatusUrl;
+            statusPollId = setInterval(function () {
+              var old = document.querySelector('script[src="' + statusUrl + '"]');
+              if (old && old.parentNode) {
+                old.parentNode.removeChild(old);
+              }
+
+              statusUrl = baseStatusUrl + '&random=' + Math.random();
+
+              var script = document.createElement('script');
+              script.src = statusUrl;
+
+              document.getElementsByTagName('head')[0].appendChild(script);
+            }, 500);
+          });
+          oReq.open('POST', BASE_URL + '/tasks/');
+          oReq.send(JSON.stringify(body));
+
+          setStatus('Adding to queue');
+        });
 
         setStatus('Adding to queue');
       });
