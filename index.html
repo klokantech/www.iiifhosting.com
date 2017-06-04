@@ -159,6 +159,27 @@ description: Lightning fast hosting for large images.
         <p>T‑PEN can attach transcription data to the actual lines of the original image document in a simple, flexible interface. More information available at http://t-pen.org/TPEN/.</p>
       </div>
     </div>
+
+    <div class="row bordertop-block">
+      <div class="col6 padt-6">
+        <h2>Metadata via IIIF Presentation API</h2>
+        <p>The institutions often prefer to implement a basic export of the metadata required for the IIIF Presentation API on their existing websites or online catalogs.</p>
+        <p>The image services provided by IIIFHosting can be easily referenced from the exported Manifest as a link. Manifest is a textual document with a title, author, document structure, copyright information and link to an image service. It should be available on a permanent URL of the institution, in the JSON format.</p>
+      </div>
+      <div class="col6 padt-6">
+        <h2>Omeka IIIF modules</h2>
+        <p>For serving the IIIF Presentation API we recommend an <a href="https://omeka.org/s/" target="_blank">open-source system Omeka S</a>. The free publication system designed to create websites for GLAM collections is easy to install on a standard web hosting. It comes with a web interface for cataloging, many visual templates, and modules extending the functionality further. Via native Linked Open Data (LOD) export - your content will be available for the semantic web.</p>
+        <p>Integration with IIIF is available as a module - and perfectly integrates with above-mentioned services. We would be glad to assist you.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col12 padt-0 padb-6 center">
+        <h3 class="mart-0">Download modules for</h3>
+        <p><a class="btn" href="https://github.com/klokantech/omeka-plugin-IIIF">Omeka 2</a>
+          <span class="padx-2">or</span> <a class="btn" href="https://github.com/klokantech/omeka-s-module-IIIFHosting">Omeka S</a></p>
+        <p><a href="https://www.klokantech.com/contact/#iiifhosting" target="_blank">Contact us</a> if you need assistance.</p>
+      </div>
+    </div>
   </div>
 
   <div id="technology" class="row bordertop-block">
@@ -305,131 +326,131 @@ description: Lightning fast hosting for large images.
 <script src="js/ol-iiifviewer.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script>
-          document.getElementById('banner').style.height = (window.innerHeight - 72) + 'px';
+            document.getElementById('banner').style.height = (window.innerHeight - 72) + 'px';
 
-          var metadata = {
-            "@context": "http://iiif.io/api/image/2/context.json",
-            "@id": "https://demo.iiifhosting.com/iiif/demo",
-            "protocol": "http://iiif.io/api/image",
-            "width": 4000,
-            "height": 3600,
-            "tiles": [
-              {"width": 256, "height": 256, "scaleFactors": [1, 2, 4, 8, 16]}
-            ],
-            "profile": [
-              "http://iiif.io/api/image/2/level1.json",
-              {"formats": ["jpg"],
-                "qualities": ["native", "color", "gray"],
-                "supports": ["regionByPct", "sizeByForcedWh", "sizeByWh", "sizeAboveFull", "rotationBy90s", "mirroring", "gray"]}
-            ]
-          };
-
-          var zoom = 3;
-          var center = [2000, -1800];
-          var extent = [0, -3600, 4000, 0];
-
-          var IIIF = new IiifViewer('viewer', metadata, function () {
-            image = this.getMap();
-            view = image.getView();
-
-            thumb = new ol.layer.Image({
-              source: new ol.source.ImageStatic({
-                url: '{{site.baseurl}}img/ships.jpg',
-                projection: view.getProjection(),
-                imageExtent: extent
-              })
-            });
-            thumb.setZIndex(-1);
-            thumb.setVisible(true);
-            image.addLayer(thumb);
-
-
-            view.setZoom(zoom);
-            view.setCenter(center);
-          });
-
-          document.addEventListener('scroll', function () {
-            var doc = document.documentElement;
-            var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
-            var navbarTop = document.getElementById('navbar-top');
-            //display nav
-            if (toTop < window.innerHeight - 72) {
-              navbarTop.className = 'hidden';
-            } else {
-              navbarTop.className = '';
-            }
-
-            //zooming image
-            if (toTop < 900) {
-              var factor = toTop / 300;
-              czoom = zoom + factor;
-              //move down
-              var ccenter = [];
-              ccenter[0] = center[0] - factor * 200;
-              ccenter[1] = center[1] + factor * 200;
-
-              view.setZoom(czoom);
-              view.setCenter(ccenter);
-            }
-          }, true);
-
-          //slow scroll
-          function scrollTo(to) {
-            var toEl = document.getElementById(to);
-            runScroll(window.scrollY, toEl.offsetTop);
-          }
-
-          function runScroll(from, to) {
-            if (from > to) {
-              var next = from - 50;
-            } else {
-              var next = from + 50;
-            }
-            if (Math.abs(to - from) <= 50) {
-              return;
-            }
-            window.scroll(0, next);
-
-            setTimeout(function () {
-              runScroll(next, to);
-            }, 10);
-          }
-
-          // shim layer with setTimeout fallback
-          window.requestAnimFrame = (function () {
-            return  function (callback) {
-              window.setTimeout(callback, 1000);
+            var metadata = {
+              "@context": "http://iiif.io/api/image/2/context.json",
+              "@id": "https://demo.iiifhosting.com/iiif/demo",
+              "protocol": "http://iiif.io/api/image",
+              "width": 4000,
+              "height": 3600,
+              "tiles": [
+                {"width": 256, "height": 256, "scaleFactors": [1, 2, 4, 8, 16]}
+              ],
+              "profile": [
+                "http://iiif.io/api/image/2/level1.json",
+                {"formats": ["jpg"],
+                  "qualities": ["native", "color", "gray"],
+                  "supports": ["regionByPct", "sizeByForcedWh", "sizeByWh", "sizeAboveFull", "rotationBy90s", "mirroring", "gray"]}
+              ]
             };
-          })();
 
-          $(document).ready(function () {
+            var zoom = 3;
+            var center = [2000, -1800];
+            var extent = [0, -3600, 4000, 0];
 
-            var $shadow = $('#banner-content *');
-            var shadowLimit = 200;
-            var moveEvent = ('ontouchstart' in document.documentElement) ? "touchmove" : "mousemove";
+            var IIIF = new IiifViewer('viewer', metadata, function() {
+              image = this.getMap();
+              view = image.getView();
 
-            (function animloop() {
-              requestAnimFrame(animloop);
-
-              $(window).bind(moveEvent, function (ev) {
-                var $this = $(this);
-                var w = $this.width();
-                var h = $this.height();
-                var center = {x: w / 2, y: h / 2};
-                var evX = (moveEvent == 'touchmove') ? ev.originalEvent.touches[0].clientX : ev.clientX;
-                var evY = (moveEvent == 'touchmove') ? ev.originalEvent.touches[0].clientY : ev.clientY;
-                var shadowX = (center.x - evX) / 40;
-                var shadowY = (center.y - evY) / 40;
-
-                shadowX = (shadowX > shadowLimit) ? shadowLimit : shadowX;
-                shadowX = (shadowX < shadowLimit * -1) ? shadowLimit * -1 : shadowX;
-                shadowY = (shadowY > shadowLimit) ? shadowLimit : shadowY;
-                shadowY = (shadowY < shadowLimit * -1) ? shadowLimit * -1 : shadowY;
-
-                $shadow.css({textShadow: Math.ceil(shadowX) + 'px ' + Math.ceil(shadowY) + 'px ' + Math.abs(shadowX * shadowY) / 30 + 'px rgba(0,0,0,0.4)'});
+              thumb = new ol.layer.Image({
+                source: new ol.source.ImageStatic({
+                  url: '{{site.baseurl}}img/ships.jpg',
+                  projection: view.getProjection(),
+                  imageExtent: extent
+                })
               });
+              thumb.setZIndex(-1);
+              thumb.setVisible(true);
+              image.addLayer(thumb);
+
+
+              view.setZoom(zoom);
+              view.setCenter(center);
+            });
+
+            document.addEventListener('scroll', function() {
+              var doc = document.documentElement;
+              var toTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+              var navbarTop = document.getElementById('navbar-top');
+              //display nav
+              if (toTop < window.innerHeight - 72) {
+                navbarTop.className = 'hidden';
+              } else {
+                navbarTop.className = '';
+              }
+
+              //zooming image
+              if (toTop < 900) {
+                var factor = toTop / 300;
+                czoom = zoom + factor;
+                //move down
+                var ccenter = [];
+                ccenter[0] = center[0] - factor * 200;
+                ccenter[1] = center[1] + factor * 200;
+
+                view.setZoom(czoom);
+                view.setCenter(ccenter);
+              }
+            }, true);
+
+            //slow scroll
+            function scrollTo(to) {
+              var toEl = document.getElementById(to);
+              runScroll(window.scrollY, toEl.offsetTop);
+            }
+
+            function runScroll(from, to) {
+              if (from > to) {
+                var next = from - 50;
+              } else {
+                var next = from + 50;
+              }
+              if (Math.abs(to - from) <= 50) {
+                return;
+              }
+              window.scroll(0, next);
+
+              setTimeout(function() {
+                runScroll(next, to);
+              }, 10);
+            }
+
+            // shim layer with setTimeout fallback
+            window.requestAnimFrame = (function() {
+              return  function(callback) {
+                window.setTimeout(callback, 1000);
+              };
             })();
-          });
+
+            $(document).ready(function() {
+
+              var $shadow = $('#banner-content *');
+              var shadowLimit = 200;
+              var moveEvent = ('ontouchstart' in document.documentElement) ? "touchmove" : "mousemove";
+
+              (function animloop() {
+                requestAnimFrame(animloop);
+
+                $(window).bind(moveEvent, function(ev) {
+                  var $this = $(this);
+                  var w = $this.width();
+                  var h = $this.height();
+                  var center = {x: w / 2, y: h / 2};
+                  var evX = (moveEvent == 'touchmove') ? ev.originalEvent.touches[0].clientX : ev.clientX;
+                  var evY = (moveEvent == 'touchmove') ? ev.originalEvent.touches[0].clientY : ev.clientY;
+                  var shadowX = (center.x - evX) / 40;
+                  var shadowY = (center.y - evY) / 40;
+
+                  shadowX = (shadowX > shadowLimit) ? shadowLimit : shadowX;
+                  shadowX = (shadowX < shadowLimit * -1) ? shadowLimit * -1 : shadowX;
+                  shadowY = (shadowY > shadowLimit) ? shadowLimit : shadowY;
+                  shadowY = (shadowY < shadowLimit * -1) ? shadowLimit * -1 : shadowY;
+
+                  $shadow.css({textShadow: Math.ceil(shadowX) + 'px ' + Math.ceil(shadowY) + 'px ' + Math.abs(shadowX * shadowY) / 30 + 'px rgba(0,0,0,0.4)'});
+                });
+              })();
+            });
 
 </script>
 <script src="/js/uploader.js"></script>
