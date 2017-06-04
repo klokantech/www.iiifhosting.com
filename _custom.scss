@@ -40,61 +40,6 @@ body{
   color: #4dc08d;
   background-color: rgba(255,255,255, 0.4);
 }
-#navbar-bottom{
-  height: 72px;
-  background-color: rgba(255,255,255, 0.9);
-  z-index: 20;
-
-  #nav-logo{
-    position: absolute;
-    margin-top: -65px;
-  }
-
-  h1{
-    visibility: hidden;
-    float: left;
-    font-size: 36px;
-    margin: 0;
-    padding-top: 20px;
-    padding-right: 15px;
-    padding-bottom: 16px;
-    padding-left: 15px;
-
-    a:hover{
-      text-decoration: none;
-    }
-  }
-  .nav {
-    float: right;
-    padding: 0 15px;
-
-    li {
-      display: inline-block;
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-    a {
-      color: #02a899;
-      text-decoration: none;
-      font-size: 15px;
-      height: 72px;
-      display: inline-block;
-      padding-top: 29px;
-      padding-right: 7.5px;
-      padding-bottom: 28px;
-      padding-left: 7.5px;
-      line-height: 1;
-      font-weight: bold;
-    }
-  }
-}
-
-@media(max-width: 620px){
-  #navbar-bottom .nav{
-    display: none;
-  }
-}
 
 .nav a{
   cursor: pointer;
@@ -115,40 +60,16 @@ body{
   }
 }
 
-#paralax{
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 0; right: 0;
-  z-index: -1;
-  background-color: #a4bacf;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
-
-#viewer{
-  z-index: 0;
-  position: absolute;
-  top: 72px; bottom: 0;
-  left: 0; right: 0;
-}
-
-#paralax #viewer {
-  top:0;  
-}
 
 #banner{
-  height: 700px;
+  height: 520px;
+  padding-top: 60px;
+  margin-top: $navbar-top-height;
+  background: url('/img/home-bg.jpg');
+  background-position: top center;
 
   #banner-content{
-    position: absolute;
     z-index: 10;
-    top: 50%;
-    height: 300px;
-    margin-top: -186px; /* height / 2 + navbar height / 2*/
-    position: absolute;
-    left: 50%;
-    width: 870px;
-    margin-left: -435px;
 
     h1{
       text-shadow: 2px 1px 1px rgba(100, 100, 100, 1);
@@ -168,25 +89,11 @@ body{
       transform: translateZ(50px);
     }
   }
-
-  #btn-learnmore{
-    top: 50%;
-    margin-top: 80px;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-transform: translateZ(60px);
-    -moz-transform: translateZ(60px);
-    transform: translateZ(60px);
-  }
 }
 
 @media(max-width: 900px){
   #banner{
     #banner-content{
-      left: 0; right: 0;
-      width: initial;
-      margin-left: 0;
-
       h1{
         font-size: 32px;
       }
