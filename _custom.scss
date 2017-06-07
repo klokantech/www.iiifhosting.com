@@ -62,11 +62,12 @@ body{
 
 
 #banner{
-  height: 520px;
-  padding-top: 60px;
+  height: 550px;
+  padding-top: 110px;
   margin-top: $navbar-top-height;
   background: url('/img/home-bg.jpg');
   background-position: top center;
+  background-size: auto 550px;
 
   #banner-content{
     z-index: 10;
