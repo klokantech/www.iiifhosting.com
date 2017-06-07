@@ -241,21 +241,32 @@ description: Lightning fast hosting for large images.
 
   <div id="pricing" class="bordertop-block">
     <div class="row padt-6">
-      <div class="col12 center">
+      <div class="col12 center padb-0">
         <h1>Pricing</h1>
-        <p class="bigger">Storage capacity that perfectly fits to your project.</p>
+        <p class="bigger marb-0">Storage capacity that perfectly fits to your project.</p>
       </div>
     </div>
     <div class="row">
-      <div class="col10 offset1 borderbottom-block center padb-6">
+      <div class="col10 offset1 borderbottom-block center padb-6 padt-0">
+        <p class="inline float-right">
+          Pay per
+          <b>year</b>
+          <span class="switch inline">
+            <input id="toggle-1" class="toggle toggle-round" type="checkbox">
+            <label for="toggle-1" class="top-8 marx-1"></label>
+          </span>
+          <b>month</b>
+        </p>
+
         <table class="center screen-large">
           <tr class="bg-gray-light b">
-            <td>Disk space</td>
-            <td class="bigger">100 MB</td>
-            <td class="bigger">5 GB</td>
-            <td class="bigger">30 GB</td>
-            <td class="bigger">100 GB</td>
-            <td class="bigger">1 TB</td>
+            <td style="width: 14%;">Disk space</td>
+            <td style="width: 14%;" class="bigger">100 MB</td>
+            <td style="width: 14%;" class="bigger">5 GB</td>
+            <td style="width: 14%;" class="bigger">30 GB</td>
+            <td style="width: 14%;" class="bigger">100 GB</td>
+            <td style="width: 14%;" class="bigger">1 TB</td>
+            <td style="width: 14%;" class="bigger">2 TB</td>
           </tr>
           <tr>
             <td class="b">No. images</td>
@@ -264,14 +275,16 @@ description: Lightning fast hosting for large images.
             <td>5,000</td>
             <td>50,000</td>
             <td>500,000</td>
+            <td>1,000,000</td>
           </tr>
           <tr class="bg-gray-light strong">
-            <td>Price/month *</td>
+            <td>Price/month</td>
             <td>Free</td>
-            <td>9 USD</td>
-            <td>69 USD</td>
-            <td>99 USD</td>
-            <td>199 USD</td>
+            <td><span class="plans-month">11</span><span class="plans-year">&nbsp;9</span> USD</td>
+            <td><span class="plans-month">83</span><span class="plans-year">69</span> USD</td>
+            <td><span class="plans-month">119</span><span class="plans-year">99</span> USD</td>
+            <td><span class="plans-month">239</span><span class="plans-year">199</span> USD</td>
+            <td><span class="plans-month">359</span><span class="plans-year">299</span> USD</td>
           </tr>
         </table>
         <table class="center screen-mobile">
@@ -284,7 +297,6 @@ description: Lightning fast hosting for large images.
           <tr><td class="bigger">2 TB</td><td>299 USD</td></tr>
           <tr><td class="bigger">3 TB</td><td>399 USD</td></tr>
         </table>
-        <p class="small">* for one year purchase period.</p>
         <a href="https://admin.iiifhosting.com/"
            class="btn-large mary-4" target="_blank">Try for free</a>
         <p>Need an invoice to prepay the hosting for 5 years or more? Please
@@ -346,6 +358,21 @@ description: Lightning fast hosting for large images.
       runScroll(next, to);
     }, 10);
   }
+
+  function decorateToogle() {
+    document.getElementById('toggle-1').addEventListener('change', function() {
+      var plsYear = document.querySelectorAll('.plans-year');
+      var plsMonth = document.querySelectorAll('.plans-month');
+      plsYear.forEach(function(el) {
+        el.style.display = (this.checked) ? 'none' : 'inline';
+      }.bind(this));
+      plsMonth.forEach(function(el) {
+        el.style.display = (this.checked) ? 'inline' : 'none';
+      }.bind(this));
+    });
+  }
+
+  decorateToogle();
 
 </script>
 <script src="/js/uploader.js"></script>
