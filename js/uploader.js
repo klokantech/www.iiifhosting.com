@@ -1,4 +1,4 @@
-var BASE_URL = 'https://admin.iiifhosting.com';
+var BASE_URL = 'https://admin.iiifhosting.dev';
 
 var du_instance;
 var task_id;
